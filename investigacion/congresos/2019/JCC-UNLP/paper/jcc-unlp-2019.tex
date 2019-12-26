@@ -1,0 +1,188 @@
+%%%%%%%%%%%%%%%%%%%% author.tex %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% sample root file for your "contribution" to a proceedings volume
+%
+% Use this file as a template for your own input.
+%
+%%%%%%%%%%%%%%%% Springer %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[hidelinks]{svproc}
+%
+% RECOMMENDED %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% to typeset URLs, URIs, and DOIs
+\usepackage{url}
+\def\UrlFont{\rmfamily}
+\usepackage{graphicx}
+
+\def\ingles{}
+
+\ifdefined\ingles
+	\usepackage{babel}
+\else
+	\usepackage[spanish]{babel}
+\fi
+\usepackage{hyperref}
+% Microtype tiene que preceder a Ragged2e
+\usepackage[babel=true,expansion=true,protrusion=true]{microtype}
+% Ragged2e tiene que ir despues de microtype para funcionar correctamente sino cambia las alineaciones y no quedan bien
+\usepackage{ragged2e}
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY AND INDEX
+%----------------------------------------------------------------------------------------
+\usepackage[
+	%style=splncs03,
+	%style=IEEEtran,
+	style=nature,
+	citestyle=numeric,
+	%sorting=none,
+	%sortcites=true,
+	%autopunct=true,
+	babel=hyphen,
+	hyperref=true,
+	abbreviate=false,
+	%backref=true,
+	backend=biber,
+	bibencoding=utf8,
+	defernumbers=true
+]{biblatex}
+
+% MARCAS DE AGUA
+%\usepackage{draftwatermark}
+%\SetWatermarkColor{gray!20}
+%\SetWatermarkText{PRELIMINAR}
+%\SetWatermarkScale{3}
+
+% TO DO LIST
+%\usepackage[colorinlistoftodos,textsize=tiny]{todonotes}
+
+\usepackage{float}
+%\newcommand{\cita}{\footnote{Se necesita cita}}
+
+\newcommand{\revisar}[1]{\todo[backgroundcolor=yellow!50]{#1}}
+\newcommand{\ampliar}{\todo[backgroundcolor=blue!30]{Ampliar}}
+\newcommand{\cita}{\todo[backgroundcolor=red!50]{\textbf{FALTA CITA}}}
+\newcommand{\figura}{\missingfigure{Falta figura\ldots}}
+
+\defbibheading{bibempty}{}
+\DeclareBibliographyCategory{cited}
+\AtEveryCitekey{\addtocategory{cited}{\thefield{entrykey}}}
+\nocite{*}
+
+\bibliography{./bib/refs} % ESTE ANDA
+
+\ifdefined\peerreview
+	\newcommand{\utn}{\colorbox{lightgray}{OCULTO PARA BLIND REVIEW}}
+	\newcommand{\frc}{\colorbox{lightgray}{OCULTO PARA BLIND REVIEW}}
+	\newcommand{\cids}{\colorbox{lightgray}{OCULTO PARA BLIND REVIEW}}
+	\newcommand{\depto}{\colorbox{lightgray}{OCULTO PARA BLIND REVIEW}}
+\else
+	\newcommand{\utn}{Universidad Tecnológica Nacional}
+	\newcommand{\frc}{Facultad Regional Córdoba }
+	\newcommand{\cids}{CIDS – Centro de Investigación, Desarrollo y Transferencia en Sistemas de Información}
+	\newcommand{\depto}{Departamento de Ingeniería en Sistemas de Información}
+\fi
+
+\begin{document}
+\mainmatter              % start of a contribution
+%
+\ifdefined\ingles
+	\title{Graph databases as storage support for detection of star clusters in nearby galaxies}
+	\titlerunning{Graph data bases as storage support\ldots}
+\else
+	\title{Bases de datos de grafos como soporte para la detección de estrellas jóvenes en cúmulos estelares cercanos}
+	\titlerunning{Bases de datos de grafos como soporte\ldots}
+\fi
+%
+%\titlerunning{Bases de datos de grafos\ldots}  % abbreviated title (for running head)
+%                                     also used for the TOC unless
+%                                     \toctitle is used
+%
+\author{
+	Martín Casatti\inst{1},
+	Analía Guzmán\inst{1},
+	María Alejandra Paz Menvielle\inst{1}
+}
+%
+\authorrunning{Casatti M., Guzmán A., Paz Menvielle M.} % abbreviated author list (for running head)
+%
+%%%% list of authors for the TOC (use if author list has to be modified)
+\tocauthor{Casatti M., Guzmán A., Paz Menvielle M.}
+%
+\institute{Universidad Tecnológica Nacional - Facultad Regional Córdoba, Córdoba, Argentina,\\
+\email{mcasatti@frc.utn.edu.ar, aguzman@frc.utn.edu.ar,pazmalejandra@gmail.com}}
+
+\maketitle              % typeset the title of the contribution
+
+\begin{abstract}
+	% Planteo de un abstract estructurado. Las secciones (aunque no se coloquen explícitamente) son:
+	% Background
+	% Aim: Objetivo del trabajo
+	% Method: Método que se utilizó para hacer el trabajo
+	% Results: Resultados
+	% Conclusion: Conclusiones
+\ifdefined\ingles
+	The present work will explore the most outstanding features that a graph database should gather for the implementation of a system for structural patterns recognition in nearby star clusters.
+	The parameters to be stored will be analyzed, according to the information revealed by various astronomical observation projects, as well as the most promising representation model, considering the purpose of storage.
+	Some of the characteristics of existing databases will also be described, as well as their advantages and disadvantages when implementing the recognition system.
+	It will be demonstrated that a representation in the form of graphs of the existing information in the astronomical repositories is not only possible and can help to the automatic processing  but also can provide an effective mechanism for the implementation of pattern recognition algorithms and the consequent detection of stellar structures of interest.
+\else
+	El presente trabajo explorará las características más destacadas que debe reunir una base de datos de grafos para la implementación de un sistema de reconocimiento de patrones estructurales en cúmulos estelares cercanos. Se analizarán los parámetros a almacenar, de acuerdo a la información relevada por diversos proyectos de observación astronómica, así como el modelo de representación más prometedor, considerando la finalidad del almacenamiento. Se describirán también algunas de las características de bases de datos existentes, así como sus ventajas y desventajas a la hora de implementar el mencionado sistema de reconocimiento.
+	Se demostrará que una representación en forma de grafos de la información existente en los repositorios astronómicos no sólo es posible y puede ayudar al procesamiento automático de dicha información sino que además puede proveer un mecanismo efectivo para la implementación de algoritmos de reconocimiento de patrones y la consecuente detección de estructuras estelares de interés.
+\fi
+\ifdefined\ingles
+	\keywords{graph, database, modeling, pattern detection, astronomy, stellar clusters}
+\else
+	\keywords{grafos, base de datos, modelado, detección de patrones, astronomía, cúmulos estelares}
+\fi
+\end{abstract}
+
+
+\section{
+\ifdefined\ingles	
+	Context
+\else
+	Contexto
+\fi
+}
+\input{contexto}
+
+\section{
+\ifdefined\ingles	
+	Introduction
+\else
+	Introducción
+\fi
+}
+\input{introduccion}
+
+\section{
+\ifdefined\ingles	
+	Methods and results
+\else
+	Métodos y resultados
+\fi
+}
+\input{desarrollo}
+
+\section{
+\ifdefined\ingles	
+	Conclusions and future work
+\else
+	Conclusiones y trabajos futuros
+\fi
+}
+\input{conclusiones-trabajos}
+
+%\setcounter{tocdepth}{1}
+%\listoftodos
+
+% Material CITADO, entra bajo el titulo REFERENCIAS
+%\defbibnote{bibnote}{\emph{El presente material bibliográfico se ha utilizado como material de estudio pero no se ha citado directamente en el texto.}}
+
+\printbibliography[category=cited]
+
+% Material NO CITADO, entra bajo el titulo BIBLIOGRAFÍA ADICIONAL
+%\section*{Bibliografía adicional (no citada)}
+%\printbibliography[heading=bibempty,title={Bibliografí­a adicional}, prenote=bibnote, notcategory=cited, resetnumbers=true, omitnumbers]
+
+\end{document}

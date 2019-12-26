@@ -1,0 +1,17 @@
+[0] Config.pm:304> INFO - This is Biber 2.12
+[1] Config.pm:307> INFO - Logfile is 'jcc-unlp-2019.blg'
+[98] biber-MSWIN32:315> INFO - === 
+[265] Biber.pm:371> INFO - Reading 'jcc-unlp-2019.bcf'
+[540] Biber.pm:886> INFO - Using all citekeys in bib section 0
+[586] Biber.pm:4093> INFO - Processing section 0
+[629] Biber.pm:4254> INFO - Looking for bibtex format file './bib/refs.bib' for section 0
+[647] bibtex.pm:1523> INFO - LaTeX decoding ...
+[874] bibtex.pm:1340> INFO - Found BibTeX data source './bib/refs.bib'
+[1182] Utils.pm:193> WARN - month field 'June' in entry 'martins2014' is not an integer - this will probably not sort properly.
+[2600] UCollate.pm:68> INFO - Overriding locale 'nil' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[2600] UCollate.pm:68> INFO - Overriding locale 'nil' defaults 'variable = shifted' with 'variable = non-ignorable'
+[2600] Biber.pm:3921> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'nil'
+[2601] Biber.pm:3927> INFO - No sort tailoring available for locale 'nil'
+[2781] bbl.pm:636> INFO - Writing 'jcc-unlp-2019.bbl' with encoding 'UTF-8'
+[2854] bbl.pm:739> INFO - Output to jcc-unlp-2019.bbl
+[2869] Biber.pm:110> INFO - WARNINGS: 1

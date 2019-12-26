@@ -1,0 +1,54 @@
+\ifdefined\ingles	
+	This report is part of the work aimed at developing a master's thesis for obtaining the title of Master in Information Systems Engineering, which seeks to determine the effectiveness of algorithms based on graphs for the detection of structural patterns in models of astronomical systems, specifically with regard to star clusters in nearby galaxies.
+	
+	The aforementioned thesis is developed in the context of a research and development project that has been approved by the Secretaría de Investigación, Desarrollo y Posgrado, in the \utn, which is carried out in the \cids.
+	
+	At present there is a large amount of information from nearby galaxies due, in large part, to the fact that the Hubble Space Telescope (HST) has allowed obtaining data with high spatial resolution using several wide-field cameras (WFPC2, ACS) \cite{dalcanton2009acs}. This access facilitates research linked to stellar groups, on different populations and histories of star formation.
+	
+	It has long been recognized in the field of astrophysics that stellar clusters are important laboratories for research, since they contain statistically significant samples of stars of approximately the same age in a small space. On the other hand, the stellar groups existing in them provide valuable information for the understanding of the structure of the galaxy that contains them.
+	
+	There is currently a huge amount of information obtained from continuous observation projects, mainly in survey mode\cite{borne2008scientific, frinchaboy2012sdss} such as:
+	
+	\begin{itemize}
+		\item VVV\cite{minniti2010vista} (\url{https://vvvsurvey.org/})
+		\item LSST\cite{ivezic2007astrometry} (\url{https://www.lsst.org/})
+		\item SDSS\cite{bundy2014overview} (\url{https://www.sdss.org/})
+		\item Gaia-ESO\cite{gilmore2012gaia} (\url{https://www.gaia-eso.eu/})
+	\end{itemize}
+
+	All the mentioned examples require automatic mechanisms for the analysis of data.
+
+	The Data Minning (DM) algorithms, in particular those related to the automatic pattern recognition, are currently having an important revision and development\cite {borne2009astroinformatics, ball2010data, schmeja2011identifying} for their application on the data that arise from the big surveys.
+	
+	In this work we intend to expose the capabilities of the graph databases to support algorithms for automatic pattern recognition on astronomical data. The aim is to determine if these techniques, from other fields of application, are transferable to the field of astronomy, with or without adjustments, or if the information from astronomical databases requires recognition algorithms designed specifically for them.
+	
+	In a first stage, the way in which the preprocessing and data acquisition will be performed will be analyzed, to then carry out the stages of extraction of the fundamental characteristics and the grouping or classification to achieve the identification and parameterization of new stellar groups.
+	
+	Regarding the preprocessing and acquisition of data, it will be described how the selected data model is and how, from the sample of data obtained from the optical instruments, it will be prepared to store it in a graph, in order to continue with the detection and recognition stages of related patterns.
+\else
+	El presente informe forma parte de los trabajos orientados a la elaboración de una tesis de maestría para la obtención del título de Magister en Ingeniería en Sistemas de Información, la cual busca determinar la efectividad de algoritmos basados en grafos para la detección de patrones estructurales en modelos de sistemas astronómicos, específicamente en lo que respecta a cúmulos estelares en galaxias cercanas.
+	
+	La mencionada tesis se desarrolla en el marco de un proyecto de investigación y desarrollo que ha sido homologado por la Secretaría de Investigación, Desarrollo y Posgrado de la \utn, el cual se lleva a cabo en el ámbito del \cids.
+	
+	En la actualidad existe una gran cantidad de información de las galaxias cercanas debido, en gran parte, a que el Telescopio Espacial Hubble (HST) ha permitido obtener datos con alta resolución espacial utilizando varias cámaras de campo amplio (WFPC2, ACS)\cite{dalcanton2009acs}. Este acceso facilita realizar investigaciones vinculadas con agrupaciones estelares, sobre diferentes poblaciones e historias de formación estelar.
+	
+	Desde hace tiempo se reconoce en el campo de la astrofísica que los cúmulos estelares son laboratorios importantes para la investigación, ya que contienen muestras estadísticamente significativas de estrellas de aproximadamente la misma edad en un espacio reducido. Por otra parte, las agrupaciones estelares existentes en los mismos brindan información valiosa para la comprensión de la estructura de la galaxia que las contiene. 
+	
+	Existe actualmente una enorme cantidad de información obtenida a partir de proyectos de observación continua, principalmente en modo “survey”\cite{borne2008scientific,frinchaboy2012sdss} como pueden ser:
+	\begin{itemize}
+		\item VVV\cite{minniti2010vista} (\url{https://vvvsurvey.org/})
+		\item LSST\cite{ivezic2007astrometry} (\url{https://www.lsst.org/})
+		\item SDSS\cite{bundy2014overview} (\url{https://www.sdss.org/})
+		\item Gaia-ESO\cite{gilmore2012gaia} (\url{https://www.gaia-eso.eu/})
+	\end{itemize}
+	
+	Todos los ejemplos mencionados requieren de mecanismos automáticos para el análisis de los datos.
+	
+	Los algoritmos de “Data Mining” (DM), en particular los relacionados con el reconocimiento automático de patrones, están en la actualidad teniendo una importante revisión y desarrollo\cite{borne2009astroinformatics,ball2010data,schmeja2011identifying} para su aplicación sobre los datos que surgen de los grandes “surveys”. 
+	
+	En este trabajo se pretende exponer las capacidades de las bases de datos de grafos para soportar algoritmos de reconocimiento automático de patrones sobre datos astronómicos. Se busca determinar si dichas técnicas, provenientes de otros ámbitos de aplicación, son trasladables al ámbito de la astronomía, si se requieren o no adecuaciones, o si la información de las bases de datos astronómicos requiere de algoritmos de reconocimiento diseñados específicamente para las mismas.
+	
+	En una primera etapa se analizará la forma en que se realizará el preprocesamiento y adquisión de datos, para luego realizar las etapas de extracción de las características fundamentales y el agrupamiento o clasificación para lograr la identificación y parametrización de nuevas agrupaciones estelares.
+	
+	Respecto al preprocesamiento y adquisión de datos se describirá como es el modelo de datos seleccionado y como a partir de la muestra de datos obtenida del instrumental óptico, se lo preparara para almacenarlo en un grafo, para luego poder continuar con las etapas de detección y reconocimiento de patrones relacionados.
+\fi

@@ -1,0 +1,203 @@
+\ifdefined\ingles	
+	A pattern is an entity that can be given a name and that is represented by a set of measured properties and the relationships between them are represented in the so-called \emph{feature vector}\cite{watanabe1985pattern}.
+	
+	In the domain of astronomical data a pattern can be the average distances between stars of the same cluster, their spectral characteristics, their brightness curve, etc. The vector of characteristics would be formed, in this case, by physical, chemical or structural characteristics that relate the different elements.
+	
+	There are works that have focused on improving the knowledge of our own Galaxy and the Magellanic Clouds, for example Baume et al. 2008\cite{baume2008basic}, but currently there are several factors that significantly increase the number of objects to analyze, making an automatic method for data processing especially relevant.
+	
+	The automatic recognition, description, classification and grouping of patterns are important activities in a great variety of scientific disciplines, such as biology, psychology, medicine, computer vision, artificial intelligence, remote sensing, etc. The main importance of pattern detection in the data is that you can infer causes for the grouping of the data and this is where the interest of the application of these techniques to the astronomical field lies.
+	
+	Although currently there are research lines studying recognition methods based on vector support machines\cite{burges1998tutorial} the approach used in this research line focuses on the structural characteristics of the graphs\cite{bunke1983inexact, pavlidis2013}.
+	
+	The following are fundamental concepts related to the construction of graphs:
+	
+	\textbf{Node:} A node is a \emph{information entity} different from any other entity in the model. All nodes represent a single set of information which is indivisible and independent of any other information represented. Larger units can be represented only as groups of related nodes. For the purposes of this project, it is necessary that each node can be uniquely and differently identified from all other nodes in the network.
+	
+	\textbf{Link:} A link is used to establish a relationship between two nodes of the model.
+	A link can only connect two nodes. One called \emph{origin} from which the link exits and one called \emph{destination} to which it arrives. A relationship between a source node and two destination nodes requires two links, both with the same origin, but with different destinations. A node can be the source of several links, as well as the destination of several links\cite{van2010graph, bondy1976graph}.
+	
+	\subsection{Patterns in Graphs}
+	
+	The recognition or detection of patterns within graphs seeks to detect a subgraph (pattern) in a graph (objective). We must consider that this search for coincidences can be broken down into two parts:
+	
+	\begin{enumerate}
+		\item A structural match, where the nodes and relations of the pattern make up an existing structure in the objective graph.
+		\item A match at the level of elements, where the nodes and relations, at the level of their particular attributes, have the same values as in the structure found in the objective graph.
+	\end{enumerate}
+
+	Many times the search for these two matches is executed separately to optimize the algorithms or reduce the search space\cite{fan2012graph}.
+	
+	In the domain under study, the detection of a subgraph (pattern) will be performed on the graphs generated from astronomical information provided by continuous observation files (survey) such as those found in the VVV Survey project, the Large Scale Telescope (LST) project or Hubble Space Telescope (HST) project, the latter being the origin of data that will be used in this and subsequent works.
+	
+	\subsection{Metrics in graphs}
+	
+	A tool widely used to describe graphs and often used to start the analysis of existing patterns in them, is the calculation of local or global metrics\cite{van2010graph}, which allow to characterize the objective graph or the base graph. The metrics can be divided into two large groups:
+	
+	\begin{itemize}
+		\item Static Metrics: When they are calculated on a static graph at a given point in time. They focus mainly on the structural characteristics of it.
+		\item Dynamic metrics: They take into account the temporal dimension of the changes that occur on the graph. They are more focused on the variations between two instants of time, rather than on the characteristics of the graph in each one of those instants.
+	\end{itemize}
+
+	Another approach to the analysis of the metrics is to analyze on which components of the graph the measurements are made. From this point of view there are different perspectives, the most common being:
+
+	\begin{itemize}
+		\item Network metrics (or global): Metrics that take as a reference the complete graph, with all the nodes and arcs that comprise it.
+		\item Node metrics (or local): Are those that take as reference a node or subset of nodes to perform the calculations.
+	\end{itemize}
+
+	Here are some common metrics:
+	
+	\subsubsection{Global metrics:}
+	
+	Centrality: This metric tries to determine which node or nodes occupy a central location in the network, being equidistant from the other nodes.
+	
+	Connection: It seeks to establish the degree to which the nodes of a graph are connected with all the other nodes of the same graph. You can find, by applying this metric, strongly connected or weakly connected components.
+	
+	Number of Components: In a graph that is not completely connected, it indicates the number of related subgraphs that are part of the graph. A component is a set of connected nodes that are part of the main graph.
+	
+	Size of the giant component: It measures the number of nodes that the connected component has that is greater than all the other components of the graph. In a connected graph the size of the giant component is equal to the total number of nodes.
+	
+	Shortest/longest route: Express the minimum/maximum length (in arcs) between two given nodes.
+	
+	\subsubsection {Local metrics:}
+	
+	Connectivity: Expresses the number of connections a specific node has. It can be expressed as 'degree', if it does not take into account the direction of the arcs that impinge or leave the node, or as 'input degree' or 'output degree' when only taking into account incoming or outgoing arcs, respectively .
+	
+	Centrality: It is a metric, associated with a node in a graph, which determines its relative importance within it, and can be divided into:
+	
+	\begin{itemize}
+		\item Centrality of degree: Number of connections with other nodes
+		\item Centrality of proximity: Indicates how close one unit is to the network of others.
+		\item Intermediation centrality: Indicates whether a unit is within some of the shortest routes between two nodes in the network.
+	\end{itemize}
+
+	\subsection{Pattern recognition design}
+
+	The main objective of a automatic pattern recognition system is to discover the underlying nature of a phenomenon or object, describing and selecting the fundamental characteristics that allow them to be classified in a certain category\cite{batagelj2006data,fukunaga2013introduction}.
+
+	Automatic pattern recognition systems allow addressing problems in computer science, engineering and other scientific disciplines \cite{devijver2012pattern,meyer2004pattern}, therefore the design of each stage requires joint analysis criteria to validate the results\cite{kim2005robust,kim2005new}.
+
+	After analyzing different ways of designing a pattern recognition system, we consider three phases\cite{alonso2001redes}:
+	
+	\begin{enumerate}
+		\item Acquisition and preprocessing of data.
+		\item Feature extraction.
+		\item Decision making or grouping.
+	\end{enumerate}
+	
+	In the data acquisition and pre-processing phase, the database infrastructure will be prepared in order to continue with the following phases.
+	
+	For the next two phases, feature extraction and decision making or grouping the most relevant parameters that make up stellar groups of interest will be considered, working in collaboration with experts from the Instituto Astrofísico de La Plata, Buenos Aires, Argentina.
+\else
+	Un patrón es una entidad a la que se le puede dar un nombre y que está representada por un conjunto de propiedades medidas y las relaciones entre ellas representadas en el denominado \emph{vector de características}\cite{watanabe1985pattern}. 
+	
+	En el dominio de los datos astronómicos un patrón puede ser las distancias medias entre estrellas del mismo cúmulo, sus características espectrales, su curva de luminosidad, etc. El vector de características estaría conformado, en este caso, por características físicas, químicas o estructurales que relaciones los distintos elementos.
+	
+	Existen trabajos que se han focalizado en mejorar el conocimiento de nuestra propia Galaxia y de las Nubes de Magallanes, por ejemplo Baume et al. 2008\cite{baume2008basic}, pero actualmente hay varios factores que incrementan de forma importante tanto la cantidad de objetos a analizar tornando especialmente relevante un método automático para el procesamiento de los datos.
+	
+	El reconocimiento automático, descripción, clasificación y agrupamiento de patrones son actividades importantes en una gran variedad de disciplinas científicas, como biología, psicología, medicina, visión por computador, inteligencia artificial, teledetección, etc. La principal importancia que tiene la detección de patrones en los datos es que se pueden inferir causas para la agrupación de los mismos y es aquí donde radica el interés de la aplicación de éstas técnicas al ámbito astronómico.
+	
+	%Este trabajo, tiene paralelos con el llamado SNA (Social Network Analysis, Análisis de Redes Sociales) que es una disciplina cuyo objetivo es:
+	%
+	%\begin{quote}
+	%\emph{``Analizar la estructura de una red social para \textbf{inferir conocimiento} de un individuo, un grupo, o las relaciones entre ellos''}\cite{scott2011sage}.	
+	%\end{quote}
+	
+	Si bien actualmente se están investigando métodos de reconocimiento basados en máquinas de soporte vectorial\cite{burges1998tutorial} el enfoque utilizado en la presente línea de investigación se centra en las características estructurales de los grafos\cite{bunke1983inexact,pavlidis2013}.
+	
+	Se describen a continuación conceptos fundamentales relacionados a la construcción de grafos:
+	
+	\textbf{Nodo:} Un nodo es un \emph{entidad de información} diferente de cualquier otra entidad en el modelo. Todos los nodos representan un único conjunto de información la cual es indivisible e independiente de cualquier otra información representada. Unidades mayores pueden representarse únicamente como grupos de nodos relacionados.Para los fines que se persiguen es necesario que cada nodo pueda ser identificado de manera unívoca y diferente de todos los demás nodos de la red.
+	
+	\textbf{Enlace:} Un enlace se utiliza para establecer una relación entre dos nodos del modelo. 
+	Un enlace solo puede conectar dos nodos. Uno denominado \emph{origen} desde el que sale el enlace y uno denominado \emph{destino} al cual llega. Una relación entre un nodo de origen y dos nodos de destino requiere de dos enlaces, ambos con el mismo origen, pero con diferentes destinos. Un nodo puede ser origen de varios enlaces, así como puede ser destino de varios enlaces\cite{van2010graph,bondy1976graph}.
+	
+	\subsection{Patrones en Grafos}
+	
+	El reconocimiento o detección de patrones dentro de grafos busca detectar un subgrafo (patrón) en un grafo (objetivo). Debemos considerar que esta búsqueda de coincidencias se puede descomponer en dos partes:
+	
+	\begin{enumerate}
+		\item Una concordancia estructural, en donde los nodos y relaciones del patrón conforman una estructura existente en el grafo objetivo.
+		\item Una concordancia a nivel de elementos, en donde los nodos y relaciones, a nivel de sus atributos particulares, tiene los mismos valores que en la estructura encontrada en el grafo objetivo.
+	\end{enumerate}
+	
+	Muchas veces la búsqueda de estas dos concordancias se ejecuta de forma separada para optimizar los algoritmos o reducir el espacio de búsqueda\cite{fan2012graph}.
+	
+	En el dominio bajo estudio la detección de un subgrafo (patrón) se realizará sobre los grafos generados a partir de información astronómica suministrada por archivos de observación continua (survey) tales como los encontrados en los proyectos VVV Survey, Large Scale Telescope (LST) o Hubble Space Telescope (HST), siendo éste último el origen de los datos que se van a utilizar en éste y sucesivos trabajos.
+	
+	\subsection{Métricas en grafos}
+	
+	Una herramienta ampliamente utilizada para describir grafos y que muchas veces se utiliza para iniciar el análisis de patrones existentes en los mismos, es el cálculo de métricas\cite{van2010graph}, locales o globales, que permiten caracterizar el grafo objetivo o el grafo patrón. Las métricas se pueden dividir en dos grandes grupos:
+	
+	\begin{itemize}
+		\item Métricas estáticas: Cuando se calculan sobre un grafo estático en un punto en el tiempo determinado. Se enfocan principalmente en las características estructurales del mismo.
+		\item Métricas dinámicas: Tienen en cuenta la dimensión temporal de los cambios que se producen sobre el grafo. Están más enfocadas en las variaciones entre dos instantes de tiempo, antes que en las características propias del grafo en cada uno de esos instantes.
+	\end{itemize}
+	
+	Otro enfoque para el análisis de las métricas radica en analizar sobre qué componentes del grafo se realizan las mediciones. Desde este punto de vista se tienen diversas perspectivas, siendo las más comunes:
+	
+	\begin{itemize}
+		\item Métricas de redes (o globales): Son las métricas que toman como referencia el grafo completo, con todos los nodos y arcos que lo conforman.
+		\item Métricas nodos (o locales): Son aquellas que toman como referencia un nodo o subconjunto de nodos para realizar los cálculos.
+	\end{itemize}
+	
+	A continuación, se detallan algunas métricas más comunes:
+	
+	\subsubsection{Métricas globales:}
+	
+	Centralidad: Esta métrica trata de determinar que nodo o nodos ocupan una ubicación central en la red, estando equidistante de los demás nodos.
+	
+	Conexionado: Busca establecer el grado en el que los nodos de un grafo están conectados con todos los demás nodos del mismo. Se puede encontrar, aplicando esta métrica, componentes fuertemente conectados o débilmente conectados.
+	
+	Cantidad de Componentes: En un grafo que no es completamente conexto, indica la cantidad de subgrafos conexos que forman parte del grafo. Un componente es un conjunto de nodos conectados que forman parte del grafo principal.
+	
+	Tamaño del componente gigante: Mide la cantidad de nodos que tiene el componente conectado que es mayor que todos los demás componentes del grafo. En un grafo conexo el tamaño del componente gigante es igual a la cantidad total de nodos.
+	
+	Ruta más corta/larga: Expresa la longitud (en arcos) mínima/máxima entre dos nodos dados. 
+	
+	\subsubsection{Métricas locales:}
+	
+	Conectividad: Expresa la cantidad de conexiones que posee un nodo determinado. Se puede expresar como ‘grado’, si no tiene en cuenta la dirección de los arcos que inciden o salen del nodo, o como ‘grado de entrada’ o ‘grado de salida’ cuando solamente tiene en cuenta los arcos entrantes o salientes, respectivamente.
+	
+	Centralidad: Es una métrica, asociada a un nodo en un grafo, que determina su importancia relativa dentro de éste, pudiendo dividirse en:
+	
+	\begin{itemize}
+		\item Centralidad de grado: Cantidad de conexiones con otros nodos
+		\item Centralidad de cercanía: Indica qué tan cerca se encuentra una unidad de la red de otras.
+		\item Centralidad de intermediación: Indica si una unidad se encuentra dentro de algunas de las rutas más cortas que existen entre dos nodos de la red.
+	\end{itemize}
+	
+	%\subsection{Análisis de Patrones}
+	%
+	%\revisar{CAMBIAR ESTO}
+	%
+	%El análisis de patrones en el dominio bajo estudio, puede determinar si existen ciertos patrones que, aún, no siendo comunes en otras áreas de la teoría de grafos, si lo son recurrentes en este dominio. Se pueden determinar si son patrones temporales, es decir que tiendan a desaparecer en el tiempo a medida que la base de conocimientos va cambiando, o si son patrones permanentes y/o que se van reforzado con el tiempo.
+	%
+	%Dicho análisis puede servir para descubrir algunas características importantes que se relacionan con el aprendizaje, entre ellas:
+	%
+	%\begin{itemize}
+	%	\item los temas que revisten más dificultad de aprendizaje,
+	%	\item la cantidad y tipos de errores más comunes y su relación con el tema o concepto evaluado,
+	%	\item las tendencias de los alumnos al momento de responder las mismas preguntas, es decir, si lo hacen con los mismos conceptos o, por el contrario, tienen una riqueza expresiva alta.
+	%	\item Se propone incluir una respuesta textual, utilizada como patrón, para poder determinar si las respuestas dadas por los alumnos tienen una correspondencia directa (literal) con respecto al material brindado para su estudio.
+	%\end{itemize}
+	
+	
+	\subsection{Diseño de reconocimiento de patrones}
+	
+	El objetivo principal de un sistema de reconocimiento  automático  de  patrones  es  descubrir  la  naturaleza  subyacente  de  un  fenómeno u objeto, describiendo y seleccionado las características fundamentales que permitan  clasificarlos  en  una  categoría  determinada\cite{batagelj2006data}\cite{fukunaga2013introduction}.  
+	
+	Sistemas  automáticos  de  reconocimiento  de  patrones  permiten  abordar problemas  en  informática,  en  ingeniería  y en otras disciplinas científicas\cite{devijver2012pattern}\cite{meyer2004pattern}, por lo tanto  el  diseño  de  cada  etapa  requiere  de criterios de análisis conjuntos para validar  los  resultados\cite{kim2005robust}\cite{kim2005new}. 
+	
+	Luego de analizar diferentes formas de diseñar un sistema de reconocimiento de patrones, se consideran tres fases\cite{alonso2001redes}:
+	
+	\begin{enumerate}
+		\item Adquisición y preproceso de datos.
+		\item Extracción de características.
+		\item Toma de decisiones o agrupamiento. 
+	\end{enumerate}
+	
+	En la fase de Adquisición y preproceso de datos, se preparará la infraestructura de la base de datos para poder continuar con las siguientes fases.
+	
+	Para las dos siguientes fases, extracción de características y toma de decisiones o agrupamiento se considerarán los parámetros más relevantes que conforman agrupaciones estelares de interés, trabajando en colaboración con expertos del Instituto Astrofísico de La Plata, Buenos Aires, Argentina.
+\fi
