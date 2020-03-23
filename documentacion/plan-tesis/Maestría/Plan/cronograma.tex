@@ -1,0 +1,26 @@
+\begin{figure}[H]
+%	\begin{center}
+		\begin{ganttchart}[
+			hgrid,
+			vgrid,
+			% x unit=0.6cm,
+			bar/.append style={draw=Black, fill=RoyalBlue!75},
+			time slot format=isodate-yearmonth,
+			time slot unit=month,
+			newline shortcut=true,
+			bar label node/.append style={align=right}
+			]{2018-09}{2019-12}
+			\gantttitlecalendar{year, month} \\
+			\ganttbar{Estudio bibliográfico}{2018-09}{2018-11} \\
+			\ganttbar{Análisis de DB\ganttalignnewline de Grafos}{2018-10}{2018-12} \\
+			\ganttbar{Análisis de fuentes\ganttalignnewline de información}{2019-01}{2019-03}\\
+			\ganttbar{Definición de atributos}{2019-03}{2019-05}\\
+			\ganttbar{Modelado de relaciones}{2019-05}{2019-07}\\
+			\ganttbar{Algoritmos de\ganttalignnewline adquisición de datos}{2019-06}{2019-08}\\
+			\ganttbar{Algoritmos de\ganttalignnewline búsqueda}{2019-07}{2019-10}\\
+			\ganttbar{Análisis de métricas}{2019-10}{2019-11}\\
+			\ganttbar{Escritura de Tesis}{2019-09}{2019-11}\\
+			\ganttmilestone{Defensa de Tesis}{2019-12}
+		\end{ganttchart}
+%	\end{center}
+\end{figure}

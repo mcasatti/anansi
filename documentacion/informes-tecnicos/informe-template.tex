@@ -1,0 +1,117 @@
+\documentclass[a4paper,headsepline,footsepline,draft=false]{scrartcl}
+
+\input{packages}
+\usepackage[sfdefault,scaled=1]{FiraSans}
+\usepackage{courier}
+
+\renewcommand{\lstlistingname}{Listado}
+\lstset{
+	language=sql,
+	numbers=left,
+	numberstyle=\tiny,
+	breaklines=true,
+	frame=shadowbox,
+	captionpos=b
+}
+
+
+% Font = Times New Roman
+%\usepackage{times}
+%\renewcommand*\rmdefault{ppl}
+%\renewcommand*\sfdefault{pag}
+%\renewcommand{\familydefault}{\sfdefault}
+
+\clearpairofpagestyles
+\ohead{Informe: \today}
+\ofoot{Página \pagemark}
+
+%\ifoot{Pie}
+%\ofoot{Página \pagemark}
+
+%----------------------------------------------------------------------------------------
+%	DEFINE EL FLAG BORRADOR para imprimir, por ejemplo, la lista de TO-DO
+%----------------------------------------------------------------------------------------
+
+\def\borrador{}
+
+\begin{document}
+
+% Title Page
+\title{--TITULO--}
+\author{Ing. Martín G. Casatti \\ e-mail: mcasatti@frc.utn.edu.ar}
+\date{\today}
+\maketitle
+%\tableofcontents
+%\newpage
+\thispagestyle{headings}
+
+\begin{abstract}
+	--ABSTRACT--
+\end{abstract}
+
+%\ifdefined\borrador
+%\section*{Foreword}
+%When writing a scientific report it is very important to think carefully how to organize it.
+%
+%Most reports and scientific papers follow the so called IMRAD structure,that is they are subdivided in four sections: \textbf{I}ntroduction, \textbf{M}ethods, \textbf{R}esults \textbf{A}nd \textbf{D}iscussion.
+%
+%This is a well-tried format and an efficient way of writing a report, it is highly recommended that you stick to it: 
+%
+%\begin{quote}
+%	The goal of a report or a scientific paper is not to impress the readers by poetic language but to transfer facts and new insights as clearly as possible.
+%\end{quote}
+%
+%More importantly structuring your paper helps you understand more about the topic you are examining.
+%\fi
+
+\section{Introducción}
+% ********************************************************************************
+% Introduction ¿Porque has comenzado?¿Qué motiva el trabajo?¿Cuál es la pregunta?
+% ********************************************************************************
+
+%\begin{lstlisting}[title={Prueba de titulo},caption={Prueba de caption},captionpos=b,frame=shadowbox]
+%#include<stdio.h>
+%#include<iostream>
+%// A comment
+%int main(void)
+%{
+%	printf("Hello World\n");
+%	return 0;
+%}
+%\end{lstlisting}
+%\fi
+
+\section{Métodos}
+% ********************************************************************************
+% Methods ¿Que has hecho?¿Qué buscabas? ¿Cómo lo has hecho?
+% ********************************************************************************
+
+\section{Resultados}
+% ********************************************************************************
+% Results ¿Que has descubierto?
+% ********************************************************************************
+
+\section{Discusión}
+% ********************************************************************************
+% Discussion ¿Que significa todo eso?
+% ********************************************************************************
+
+\section{Referencias y bibliografía}
+\begin{thebibliography}{50}
+	\bibitem{dropbox} 
+		DropBox para descarga de archivos, 
+		\url{https://www.dropbox.com/sh/kniy70dwlx5s1ow/AACySwi4pJsctAstrZf-mK3Wa?dl=0}
+	\bibitem{topcat} 
+		TOPCAT (herramienta de gestión de tablas de texto), 
+		\url{http://www.star.bristol.ac.uk/~mbt/topcat/#starjava}
+\end{thebibliography}
+
+%----------------------------------------------------------------------------------------
+%	LISTA DE TO-DO (CONDICIONAL, DEPENDE DEL FLAG \borrador)
+%----------------------------------------------------------------------------------------
+\ifdefined\borrador
+\section*{Pendientes}
+	\listoftodos
+\fi
+
+\end{document}          

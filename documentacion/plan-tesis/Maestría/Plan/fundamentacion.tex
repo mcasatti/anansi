@@ -1,0 +1,41 @@
+	\ifdefined\borrador
+	\info[inline]{Información de contexto sobre el ámbito en el que se va a desarrollar el trabajo}
+	\fi
+	
+	\unsure[inline]{GIRÓ:Bien pero ampliar. No hay referencias a antecedentes o motivación del tesista por el tema abordado}
+	
+	El problema de la representación del conocimiento de tal forma que sea procesable por técnicas automáticas no es nuevo y abarca prácticamente toda la historia de la informática como disciplina. Todos los mecanismos de almacenamiento de información tienen como finalidad última el permitir que un sistema de cómputo pueda acceder y procesar dicha información sin la intervención humana.
+	
+	Las bases de datos relacionales son quizá el mecanismo más establecido y popular a la hora de almacenar información que debe ser procesada por una computadora. Pero existe un problema inherente a la representación y consulta de la información almacenada y es que para que las consultas puedan realizarse en lenguaje natural\footnote{En la filosofía del lenguaje, el lenguaje natural es la lengua o idioma hablado o escrito por humanos para propósitos generales de comunicación. Se diferencia de los lenguajes artificiales, que han sido diseñados con finalidades específicas.} el usuario no tiene por qué conocer la estructura en la cual se hayan almacenados los datos.
+	
+	Como vemos, las bases de datos relacionales no cumplen con este requisito ya que su estructura, modelada como tablas, compuestas cada una por filas y columnas, debe ser perfectamente conocida para permitir la consulta y el acceso a la información representada.
+	
+	En 1976, un trabajo de John Sowa, un investigador de IBM (International Bussiness Machines), define las bases de lo que se conoce como grafos conceptuales, con el objetivo de poder realizar consultas a una base de datos sin conocer la estructura subyacente de la misma.\cite{Sowa1976}
+	
+	La representación del conocimiento es una rama de la Inteligencia Artificial (IA) que se dedica a estudiar la representación del conocimiento del mundo de forma tal que una computadora pueda interpretarla y utilizarla para resolver problemas complejos. Y es dentro de este ámbito que los grafos conceptuales se han probado de gran valor.
+	
+	En palabras de Marko Rodriguez, Doctor por la Universidad de California en Santa Cruz:
+	
+	\begin{center}
+		\begin{minipage}{0.9\linewidth}
+			\vspace{5pt}%margen superior de minipage
+			{\small
+				``Una base de datos de grafos, y su ecosistema asociado, puede llevarnos a una solución elegante y eficiente a diversos problemas en el ámbito de la representación del conocimiento y el razonamiento.''
+			}
+			\begin{flushright}
+				(\citeauthor{markorodriguez2011}, \citeyear{markorodriguez2011})
+			\end{flushright}
+			\vspace{5pt}%margen inferior de la minipage
+		\end{minipage}
+	\end{center}
+	
+	En el año 1983, John Sowa ampliaría y compaginaría todos los trabajos previos realizados sobre sus ideas de los grafos conceptuales en el libro \citetitle{Sowa1983}, en donde tocaría temas tan diversos como la filosofía, la psicología, la lingüística y la inteligencia artificial.
+	
+	Actualmente se deben tener en cuenta al menos cuatro factores fundamentales a la hora de diseñar un sistema de representación del conocimiento en cualquier dominio dado:
+	
+	\begin{description}
+		\item [Adecuación Representacional:] Habilidad para representar todas las clases de conocimiento que son necesarias en el dominio.\cite{van2008handbook}
+		\item [Adecuación Inferencial:] Habilidad de manipular estructuras de representación de tal manera que devengan o generen nuevas estructuras que correspondan a nuevos conocimientos inferidos de los anteriores.\cite{van2008handbook}
+		\item [Eficiencia Inferencial:] Capacidad del sistema para incorporar información adicional a la estructura de representación, llamada metaconocimiento, que puede emplearse para focalizar la atención de los mecanismos de inferencia con el fin de optimizar los cómputos.\cite{van2008handbook}
+		\item [Eficiencia en la Adquisición:] Capacidad de incorporar fácilmente nueva información. Idealmente el sistema por sí mismo deberá ser capaz de controlar la adquisición de nueva información y su posterior representación.\cite{van2008handbook}
+	\end{description}

@@ -1,0 +1,288 @@
+\documentclass[a4paper,headsepline,footsepline,draft=false]{scrartcl}
+
+\input{packages}
+\usepackage[sfdefault,scaled=1]{FiraSans}
+\usepackage{courier}
+
+\renewcommand{\lstlistingname}{Listado}
+\lstset{
+	language=sql,
+	numbers=left,
+	numberstyle=\tiny,
+	breaklines=true,
+	frame=shadowbox,
+	captionpos=b
+}
+
+% Font = Times New Roman
+%\usepackage{times}
+%\renewcommand*\rmdefault{ppl}
+%\renewcommand*\sfdefault{pag}
+%\renewcommand{\familydefault}{\sfdefault}
+
+\clearpairofpagestyles
+\ohead{Informe: \today}
+\ofoot{Página \pagemark}
+
+%\ifoot{Pie}
+%\ofoot{Página \pagemark}
+
+%----------------------------------------------------------------------------------------
+%	DEFINE EL FLAG BORRADOR para imprimir, por ejemplo, la lista de TO-DO
+%----------------------------------------------------------------------------------------
+
+\def\borrador{}
+
+\begin{document}
+
+% Title Page
+\title{Adecuación de datos astronómicos para importación a Neo4J}
+\author{Ing. Martín G. Casatti \\ e-mail: mcasatti@frc.utn.edu.ar}
+\date{\today}
+\maketitle
+%\tableofcontents
+%\newpage
+\thispagestyle{headings}
+
+\begin{abstract}
+	Descripción de las herramientas y métodos utilizados para el procesamiento de los datos astronómicos para su incorporación en la base de datos ONGDB.
+\end{abstract}
+
+%\ifdefined\borrador
+%\section*{Foreword}
+%When writing a scientific report it is very important to think carefully how to organize it.
+%
+%Most reports and scientific papers follow the so called IMRAD structure,that is they are subdivided in four sections: \textbf{I}ntroduction, \textbf{M}ethods, \textbf{R}esults \textbf{A}nd \textbf{D}iscussion.
+%
+%This is a well-tried format and an efficient way of writing a report, it is highly recommended that you stick to it: 
+%
+%\begin{quote}
+%	The goal of a report or a scientific paper is not to impress the readers by poetic language but to transfer facts and new insights as clearly as possible.
+%\end{quote}
+%
+%More importantly structuring your paper helps you understand more about the topic you are examining.
+%\fi
+
+\section{Introducción}
+
+Como primer paso para el proyecto de detección de patrones en datos astronómicos por medio de bases de datos de grafos, se deben importar dichos datos al almacenamiento elegido.
+
+Los datos vienen en la forma de archivos separados por coma que cuentan con los siguientes datos:
+
+\begin{itemize}
+	\item Ascensión recta.
+	\item Declinación
+	\item Lectura del Filtro F555W
+	\item Error en la Lectura del Filtro F555W
+	\item Lectura del Filtro F814W
+	\item Error en la Lectura del Filtro F814W
+	\item Diferencia entre F555 y F814 (F555-F814)
+	\item Error en la diferencia entre F555 y F814
+	\item Identificador del registro
+\end{itemize}
+
+Los datos son de utilización directa excepto el identificador de registro. Esto es así debido a que el identificador se genera por archivo, por lo que en diferentes archivos se repiten los mismos indicadores (entero, autoincremental)
+
+Como además las lecturas no cuentan con un identificador único absoluto en todo el dominio de datos, es de suma importancia generar un identificador que no sea dependiente del archivo de datos sino de la lectura del instrumento.
+
+%\ifdefined\borrador
+%\begin{lstlisting}[title={Prueba de titulo},caption={Prueba de caption},captionpos=b,frame=shadowbox]
+%#include<stdio.h>
+%#include<iostream>
+%// A comment
+%int main(void)
+%{
+%	printf("Hello World\n");
+%	return 0;
+%}
+%\end{lstlisting}
+%\fi
+
+\section{Métodos}
+
+Inicialmente se descargaron y descomprimieron los archivos disponibles en el repositorio DropBox\cite{dropbox} los cuales contienen un conjunto de archivos con lecturas de Hubble, para los filtros mencionados anteriormente y para las galaxias NGC300 y NGC2366 (ambos cuentan con los mismos campos de datos).
+
+Una vez descargados y descomprimidos los archivos se obtuvieron varios archivos con formato CSV, los que se procesaron utilizando la herramienta TOPCAT\cite{topcat}. 
+
+TOPCAT tiene la posibilidad de generar columnas ``sintéticas'' o sea elaboradas a partir de los datos existentes en el archivo original. Esta funcionalidad resultó muy útil a la hora de generar información necesaria para la importación a la base de datos.
+
+Estas columnas se pueden generar utilizando una gran cantidad de funciones disponibles, para procesar los datos existentes y generar nueva información, la que se puede grabar posteriormente como una tabla adecuada para su importación.
+
+El principal dato que se debe generar para poder realizar la importación es el identificador único que permitirá individualizar cada una de las lecturas de los instrumentos.
+
+Actualmente cada lectura se identifica mediante los datos de Ascensión Recta y Declinación, pero dichos valores tienen el inconveniente de ser de tipo flotante con múltiples decimales de precisión. Las claves primarias de este tipo presentan siempre un problema de rendimiento y además no son indexables, o lo son solamente en algunos motores de base de datos.
+
+Utilizando las herramientas de generación de TOPCAT se generaron dos columnas intermedias, para adecuar los tipos y formatos de datos, utilizando las siguientes funciones:
+
+\lstset{language=HTML}
+\begin{lstlisting}[caption={Funciones para generación de columnas intermedias},captionpos=b,frame=shadowbox]
+	RA_id = formatDecimal(RA*100000,"#########");
+	DEC_id = formatDecimal(DEC*100000,"#########");
+\end{lstlisting}
+
+Estas dos funciones generan dos columnas temporales con el siguiente formato:
+
+\begin{itemize}
+	\item Dato original: \texttt{RA=112.11976209349766}, Dato generado: \texttt{RA\_id=11211976}
+	\item Dato original: \texttt{DEC=69.18853071324}, Dato generado: \texttt{DEC\_id=6918853}
+\end{itemize}
+
+Una vez generadas estas dos columnas se concatenan con un separador, para generar el identificador final que se va a utilizar para identificar las lecturas individuales.
+
+\begin{lstlisting}[caption={Generación de identificador final},captionpos=b,frame=shadowbox]
+	id = RA_id+":"+DEC_id;
+\end{lstlisting}
+
+lo que genera un identificador final con el siguiente formato:
+
+\begin{itemize}
+	\item \texttt{id=11211976:6918853}
+\end{itemize}
+
+\subsection{Columnas adicionales}
+
+Por medio del mismo mecanismo mencionado anteriormente se generaron algunas columnas adicionales destinadas a facilitar el procesamiento de los datos una vez que los mismos se encuentren importados a la base de datos.
+
+Las mismas son:
+
+\begin{lstlisting}[caption={Identificación de galaxia y campo de observacion},captionpos=b,frame=shadowbox]
+galaxy = trim(concat('NGC300',''));
+field = 1
+\end{lstlisting}
+
+Estos datos salen directamente de los archivos de datos a procesar (el formato del nombre del archivo de datos original es campo1\_NGC300.csv)
+
+Se incluyeron además dos columnas que permitiran agrupar las zonas de las observaciones a partir de la elevación recta y la declinación:
+
+\begin{lstlisting}[caption={Creación de los grupos de elevación y declinación},captionpos=b,frame=shadowbox]
+RA_group = toInteger(RA);
+DEC_group = toInteger(DEC);
+\end{lstlisting}
+
+%\subsection{Definición de tipos de datos}
+%
+%Es importante mencionar que los tipos de datos a utilizar durante el proceso de importación se pueden especificar como etiquetas directamente en los archivos CSV de datos. El mapeo de tipos de datos utilizados es el siguiente:
+%
+%\begin{center}
+%	\texttt{
+%\begin{tabular}{|l|c|}
+%	\hline 
+%	\textbf{Campo} & \textbf{Tipo de dato} \\ 
+%	\hline 
+%	id & string \\ 
+%	\hline 
+%	galaxy & string \\ 
+%	\hline 
+%	field & int \\ 
+%	\hline 
+%	RA\_group & int \\ 
+%	\hline 
+%	DEC\_group & int \\ 
+%	\hline 
+%	RA & double \\ 
+%	\hline 
+%	RA\_id & string \\ 
+%	\hline 
+%	DEC & double \\ 
+%	\hline 
+%	DEC\_id & string \\ 
+%	\hline 
+%	F435W & double \\ 
+%	\hline 
+%	e\_435 & double \\ 
+%	\hline 
+%	F555W & double \\ 
+%	\hline 
+%	e\_555 & double \\ 
+%	\hline 
+%	F814W & double \\ 
+%	\hline 
+%	e\_814 & double \\ 
+%	\hline 
+%	F435-F555W & double \\ 
+%	\hline 
+%	e\_F435-F555W & double \\ 
+%	\hline 
+%	F555W-F814W & double \\ 
+%	\hline 
+%	e\_F555W-F814W & double \\ 
+%	\hline 
+%\end{tabular} 
+%}
+%\end{center}
+%
+%Estos tipos de datos se especifican directamente como una etiqueta que se agrega al nombre del campo, separado por el símbolo \textbf{:}.
+%
+%\begin{lstlisting}[caption={Indicación de tipos de datos en el encabezado del archivo CSV},captionpos=b,frame=shadowbox]
+%id:ID,galaxy:string,field:int,RA_group:int,DEC_group:int,
+%RA:double,RA_id:string,DEC:double,DEC_id:string,F435W:double,
+%e_435:double,...,
+%\end{lstlisting}
+
+\subsection{Automatización de la adecuación de datos}
+
+Si bien la herramienta TOPCAT, mencionada anteriormente, dispone de una gran variedad de funciones para la adecuación de la estructura de las tablas CVS, las cuales se utilizaron principalmente en la faz exploratoria del presente trabajo, dichas funciones se ejecutan de manera interactiva con el usuario y no son adecuadas para procesos masivos o automatizados.
+
+TOPCAT utiliza la herramienta STILS\cite{stilts} en background para realizar las operaciones por lo que se planteó la posibilidad de transformar todos los comandos utilizados de manera interactiva en una única secuencia de comandos que se pudiera ejecutar mediante STILTS sobre cualquier archivo de datos para generar un archivos de datos directamente importable.
+
+De ésta manera se generó el siguiente archivo de comandos de Windows (.CMD) el cual recibe como parámetro el nombre de un archivo CSV en formato original y genera un archivo con extensión .import.csv que tiene el formato esperado por la herramienta de importación de la base de datos.
+
+\begin{lstlisting}[language=command.com,caption={Archivo batch para la conversión de fuentes de datos}]
+@echo off
+setlocal
+set _filename=%~n1
+set _extension=%~x1
+set _outextension=.import%_extension%
+set _inputfile=%_filename%%_extension%
+set _outputfile=%_filename%%_outextension%
+set _campo=%_filename:~5,1%
+set _galaxy=%_filename:~7,8%
+
+echo Generando ^<%_outputfile%^> a partir de ^<%_inputfile%^>
+
+@java -jar "../tools/stilts/stilts.jar" ^
+	-verbose ^
+	tpipe ^
+	ifmt=csv ^
+	cmd="progress" ^
+	cmd="delcols id" ^
+	cmd="addcol -after RA RA_id 'formatDecimal(RA*100000,\"#########\")'" ^
+	cmd="addcol -after DEC DEC_id 'formatDecimal(DEC*100000,\"#########\")'" ^
+	cmd="addcol -before RA id 'RA_id+\":\"+DEC_id'" ^
+	cmd="addcol -after id galaxy '\"%_galaxy%\"'" ^
+	cmd="addcol -after galaxy field '\"%_campo%\"'" ^
+	cmd="addcol -after field RA_group 'toInteger(RA)'" ^
+	cmd="addcol -after RA_group DEC_group 'toInteger(DEC)'" ^
+	out=%_outputfile% ^
+	ofmt=csv ^
+	in=%_inputfile% 
+endlocal  
+\end{lstlisting}
+
+\section{Resultados}
+
+\section{Discusión}
+
+\section{Referencias y bibliografía}
+
+\begin{thebibliography}{50}
+	\bibitem{dropbox} 
+		DropBox para descarga de archivos, 
+		\url{https://www.dropbox.com/sh/kniy70dwlx5s1ow/AACySwi4pJsctAstrZf-mK3Wa?dl=0}
+	\bibitem{topcat} 
+		TOPCAT (herramienta de gestión de tablas de texto), 
+		\url{http://www.star.bristol.ac.uk/~mbt/topcat/#starjava}
+	\bibitem{stilts}
+		STILTS (Starlink Tables Infrastructure Library Tool Set)
+		\url{http://www.star.bris.ac.uk/~mbt/stilts/}
+\end{thebibliography}
+
+%----------------------------------------------------------------------------------------
+%	LISTA DE TO-DO (CONDICIONAL, DEPENDE DEL FLAG \borrador)
+%----------------------------------------------------------------------------------------
+\ifdefined\borrador
+\section*{Pendientes}
+	\listoftodos
+\fi
+
+\end{document}          

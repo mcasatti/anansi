@@ -1,0 +1,196 @@
+\documentclass[
+	11pt,oneside,a4paper,
+	headsepline,footsepline,plainfootsepline,plainheadsepline,
+	fleqn,
+	flushbottom,
+	raggedbottom
+]{memoir}
+%]{scrartcl}
+	
+%\usepackage[inner=25mm, outer=25mm, top=25mm, bottom=20mm]{geometry} 
+
+\def\borrador{}
+\counterwithout{section}{chapter}
+
+\input{../../common/packages}
+\usepackage{setspace}
+
+\ifdefined\borrador
+	\SetWatermarkText{Borrador}
+	\SetWatermarkScale{0.8}
+\else
+	\SetWatermarkText{}
+\fi
+
+\usepackage[sfdefault,scaled=1]{FiraSans}
+%\usepackage{times}
+%\usepackage{lmodern} % change by times,bookman,palatino, etc.
+
+%\setcounter{tocdepth}{2}
+
+% 
+% LA GESTION BIBLIOGRAFICA NO ES COMUN A TODOS LOS DOCUMENTOS
+% POR ESO LA DEFINO EN CADA UNO
+%
+%\usepackage[backend=biber,defernumbers=true,sorting=none]{biblatex}
+\usepackage[
+	backend=biber,
+	%sorting=anyt,  %% Alfabetico
+	sorting=none,	%% En orden de aparición
+	style=numeric,
+	citestyle=numeric
+]{biblatex}
+\DeclareBibliographyCategory{cited}
+\AtEveryCitekey{\addtocategory{cited}{\thefield{entrykey}}}
+%\addbibresource{bibliografia.bib}
+\addbibresource{refs.bib}
+\nocite{*}
+
+\clearpairofpagestyles
+%\ihead{\today}								% Header interno: Fecha
+% ENCABEZADO
+\ohead{\textit{Plan de Tesis de Maestría}}		% Header interno: Titulo
+\ihead{\raisebox{-7mm}{\includegraphics[height=10mm]{./images/utn-black}}}		% Footer interno: 
+% PIE DE PAGINA
+\ofoot{Página \pagemark}	% Header externo: Evento
+%Titulo
+%\ohead{\raisebox{-10mm}{\includegraphics[height=10mm]{./images/MISI3}}}
+
+%\title{Bases de datos de grafos como mecanismo de representación de información heterogénea para la detección de patrones}
+%\date{\today}
+%\author{Ing. Martin Casatti\\ UTN Regional Córdoba}
+
+%\usepackage{type1cm}
+%\usepackage{eso-pic}
+%\makeatletter
+%\AddToShipoutPicture{%
+%	\setlength{\@tempdimb}{.5\paperwidth}%
+%	\setlength{\@tempdimc}{.5\paperheight}%
+%	\setlength{\unitlength}{1pt}%
+%	\put(\strip@pt\@tempdimb,\strip@pt\@tempdimc){%
+%		\makebox(0,0){\rotatebox{45}{\textcolor[gray]{0.75}%
+%				{\fontsize{6cm}{6cm}\selectfont{DRAFT}}}}%
+%	}%
+%}
+%\makeatother
+
+%\onehalfspacing
+
+\begin{document}
+	
+	%\currentpage
+	%\pagedesign
+	%\pagediagram
+	%\pagevalues
+	
+	\input{title-page}
+	%\maketitle
+	\tableofcontents % Print the table of contents itself
+
+	\newpage
+	
+	\section{Justificación}
+	\input{justificacion}
+	
+	
+	\section{Fundamentación}
+	\input{fundamentacion}
+	
+	\section{Objetivos}
+	\input{objetivos}
+	
+	\section{Metodología}
+	\input{metodologia}
+	
+	\section{Cronograma}
+	\input{cronograma}
+	
+	\section{Condiciones institucionales}
+	\input{condiciones-institucionales}
+
+	\section{Referencias y Bibliografía}
+	
+	\unsure[inline]{GIRO: Bien. Debería ampliarse.}
+	
+	\defbibnote{bibnote}{El presente material bibliográfico se ha utilizado como material de estudio pero no se ha citado directamente en el texto.}
+	
+	% Material CITADO, entra bajo el titulo REFERENCIAS
+	\printbibliography[category=cited,title={Referencias}]
+	
+	% Material NO CITADO, entra bajo el titulo BIBLIOGRAFIA ADICIONAL
+	\printbibliography[title={Bibliografía adicional},prenote=bibnote,notcategory=cited,resetnumbers=true,omitnumbers=true]
+		
+	\ifdefined\borrador
+	
+	\section*{Notas e Ideas}
+	\todo[inline]{Completar esta sección}
+	\todo[inline]{Ver alternativas de formato, templates \LaTeX{}}
+	
+	%\url{maestria@groppo.com.ar}
+	
+	\subsection*{Tesis de maestría}
+	El objeto del trabajo es poder establecer una estructura que permita almacenar y relacionar datos obtenidos de fuentes que no son consistentes ni en su estructura ni en el tipo de información que contienen.
+	
+	Esto puede incluir fuentes periodísticas, bases de datos gubernamentales, información gráfica (fotos, imágenes), información geográfica, infraestructura (carreteras, controles aduaneros, puertos, etc.), factores climáticos o ambientales, información demográfica, etc.
+	
+	Esa información debe poder registrarse y correlacionarse con elementos asociados, cualquiera sea el tipo de información de origen o de destino.
+	
+	La información debe tener asociados atributos genéricos, aplicables a cualquier tipo de datos, y atributos específicos de acuerdo a la información que contenga.
+	
+	La información debe poder consultarse en todo momento y ser mantenida en tiempo real. Se deben poder hacer consultas sobre cualquier atributo, ya sea genérico o específico y se deben poder obtener todas las relaciones que enlazan los distintos conceptos.
+	
+	El objetivo final es poder detectar patrones entre esos datos y analizar distintos tipos de relaciones, no evidentes, entre las fuentes de datos.
+	
+	\subsection*{Tesis de Especialidad}
+	La tesis de especialidad debe contener todo el análisis previo que permita evaluar si las bases de datos de grafos son un mecanismo eficiente y recomendable para el almacenamiento de información heterogénea.
+	
+	El trabajo debe explorar el concepto de grafo, las capacidades de este método de almacenamiento, las alternativas disponibles en productos que implementen este paradigma, la experiencias previas, si las hubiera, y los casos en que se esté utilizando un enfoque similar, de ser posible, con los resultados obtenidos.
+	
+	\subsection*{Tesis de doctorado}
+	Consideremos una red conformada por drones (aéreos, terrestres, marinos o cualquier combinación) en donde los nodos son los dispositivos y los arcos están compuestos por los nexos de comunicación entre ellos. Este modelo se puede entender conceptualmente como un grafo.
+	Consideremos que los dispositivos tienen distintas fuentes de información que suministran diferentes tipos de valores, como por ejemplo:
+	
+	\begin{itemize}
+		\item Posición GPS
+		\item Sensores de altitud
+		\item Sensores de condiciones ambientales
+		\item Imágenes
+		\item Sensores magnéticos
+		\item etc.
+	\end{itemize}
+	
+	El trabajo pretende utilizar lo planteado en la tesis de maestría, con respecto al reconocimiento de patrones en base a fuentes de información heterogéneas. Se busca extrapolar las técnicas que permiten detectar patrones en un grafo dirigido con fuentes de datos variados, a un grafo compuesto por drones como vértices y nexos de comunicación como aristas, considerando los distintos tipos de sensores como fuentes de información.
+	
+	El objetivo es que un conjunto de dispositivos autónomos reconozcan un patrón general a partir de información parcial detectada por cada uno de ellos. Es de destacar que ninguno de los drones, por si solo, debe tener toda la información disponible.
+	
+	\section*{Trabajo y evaluación final de HDT}
+	\begin{itemize}
+		\item Se cumplimentara presentando un borrador del plan de tesis pedido para finalizar la carrera
+		\item Recomendable que el tema sea el previsto para la tesis de posgrado
+		\item Presentación individual
+		\item Alcance
+		\begin{enumerate}
+			\item Título
+			\item Justificación del tema elegido
+			\item Fundamentación
+			\item Objetivos
+			\item Metodología
+			\item Plan de trabajo
+			\item Condiciones institucionales
+			\item Referencias
+			\item Bibliografía 
+		\end{enumerate}
+		\item Extensión: De 4 a 6 carillas. Además la carátula.
+		\item Formato acorde a la Circular Nro 2 
+		\item Presentación
+		\begin{enumerate}
+			\item Exposición pública
+			\item Duración 10 minutos		
+		\end{enumerate}
+	\end{itemize}
+	
+	\listoftodos[Pendientes]
+	
+	\fi
+
+\end{document}
