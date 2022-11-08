@@ -4,5 +4,17 @@
 			"path": "."
 		}
 	],
-	"settings": {}
+	"settings": {
+		"files.exclude": {
+			"**/.git": true,
+			"**/.svn": true,
+			"**/.hg": true,
+			"**/CVS": true,
+			"**/.DS_Store": true,
+			"**/Thumbs.db": true,
+			"**/*.{aux,bbl,bcf,blg,fdb*,fls,out,run*,sync*,bak,tmp}": true,
+			"**/desktop.ini":true
+		}
+	},
+	
 }
