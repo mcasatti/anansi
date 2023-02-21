@@ -13,14 +13,14 @@
 % Ragged2e tiene que ir despues de microtype para funcionar correctamente sino cambia las alineaciones y no quedan bien
 \usepackage{ragged2e}
 % Permite utilizar encabezados y pies de pagina simples con KOMA-Script
-\usepackage{scrlayer-scrpage}
+\usepackage [singlespacing=true]{scrlayer-scrpage}
 % Permite imprimir el layout de un documento, con toda la informacion importante
 % mediante el comando
 % \layout (en document)
 % o
 % \currentpage \pagedesign
 % \currentpage \pagediagram \pagevalues
-\usepackage{layouts}
+%\usepackage{layouts}
 \usepackage{float}
 \usepackage{wrapfig}
 \usepackage{caption}
@@ -71,13 +71,21 @@
 \newcommandx{\improvement}[2][1=]{\todo[linecolor=plum,backgroundcolor=plum!25,bordercolor=plum,#1]{#2}}
 \newcommandx{\thiswillnotshow}[2][1=]{\todo[disable,#1]{#2}}
 
-\newcommand{\revisar}[1]{\todo[backgroundcolor=yellow!50]{\textbf{Revisar:} #1}}
-\newcommand{\ampliar}{\todo[backgroundcolor=blue!30]{Ampliar}}
-\newcommand{\revisarcita}{\colorbox{red}{\textcolor{white}{\ CITA\ }}}
-\newcommand{\sincita}{\colorbox{red}{\textcolor{white}{\ CITA\ }}}
-\newcommand{\faltafigura}{\missingfigure{Falta figura\ldots}}
-\newcommand{\citaurl}{\todo[backgroundcolor=green!50]{URL}}
-
+\ifdefined\borrador
+	\newcommand{\revisar}[1]{\todo[backgroundcolor=yellow!50]{\textbf{Revisar:} #1}}
+	\newcommand{\ampliar}{\todo[backgroundcolor=blue!30]{Ampliar}}
+	\newcommand{\revisarcita}{\colorbox{red}{\textcolor{white}{\ CITA\ }}}
+	\newcommand{\sincita}{\colorbox{red}{\textcolor{white}{\ CITA\ }}}
+	\newcommand{\faltafigura}{\missingfigure{Falta figura\ldots}}
+	\newcommand{\citaurl}{\todo[backgroundcolor=green!50]{URL}}
+\else
+	\newcommand{\revisar}[1]{}
+	\newcommand{\ampliar}{}
+	\newcommand{\revisarcita}{}
+	\newcommand{\sincita}{}
+	\newcommand{\faltafigura}{}
+	\newcommand{\citaurl}{}
+\fi
 % ======================================================
 % MARCAS DE AGUA
 % ======================================================
@@ -96,4 +104,4 @@
 \usepackage{array}
 \usepackage[hidelinks]{hyperref}
 \usepackage{xstring}
-\captionsetup[table]{belowskip=2pt}
+%\captionsetup[table]{belowskip=2pt}
