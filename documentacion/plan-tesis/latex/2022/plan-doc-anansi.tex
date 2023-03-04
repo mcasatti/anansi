@@ -13,20 +13,26 @@
 %------------------------------------------
 % FLAG DE BORRADOR
 %------------------------------------------
-%\def\borrador{}
+\def\borrador{}
 %------------------------------------------
 
 %------------------------------------------
 % CONFIGURACION DEL DOCUMENTO
 %------------------------------------------
 \input{config}
+\renewcommand\fbox{\fcolorbox{gray!50}{white}}
 
 \begin{document}
 
 \input{titulo}
 
 \newpage
-\tableofcontents
+
+\ifdefined\borrador
+	\listoftodos
+\fi 
+
+
 \newpage
 
 \section {Introducción}
@@ -92,7 +98,7 @@ Es en este sentido que creemos que los resultados del presente trabajo pueden ap
 
 \section {Hipótesis de trabajo}
 
-Es la intención de este trabajo de posgrado demostrar la viabilidad de la aplicación de técnicas inicialmente diseñadas para la caracterización de redes sociales, en el ámbito de la astronomía, para la detección de cúmulos estelares, aprovechando de esta manera los estudios existentes en la materia pero enfocados en un nuevo ámbito de aplicación.
+Es la intención de esta tesis doctoral de posgrado demostrar la viabilidad de la aplicación de técnicas inicialmente diseñadas para la caracterización de redes sociales, en el ámbito de la astronomía, para la detección de cúmulos estelares, aprovechando de esta manera los estudios existentes en la materia pero enfocados en un nuevo ámbito de aplicación.
 
 Se postula que:
 
@@ -103,38 +109,57 @@ Se postula que:
 
 \section {Objetivos}
 
-El presente trabajo tiene como finalidad demostrar la viabilidad de la utilización de técnicas algorítmicas de aplicación en el ámbito de redes sociales para la detección de agrupaciones estelares en galaxias cercanas.
+\subsection{Objetivo principal} 
+
+
+\begin{enumerate}
+	\item \label{objetivo:general} El presente trabajo tiene como finalidad demostrar la viabilidad de la utilización de técnicas algorítmicas de aplicación en el ámbito de redes sociales para la detección de agrupaciones estelares en galaxias cercanas.	
+\end{enumerate}
 
 %Se analizará la viabilidad de dichas técnicas y se contrastarán los resultados obtenidos con respecto a los de otras técnicas, diseñadas específicamente para el ámbito astronómico, a fin de sacar conclusiones adecuadas al ámbito de aplicación específico.
 
+\subsection{Objetivos secundarios}
+
 Se plantean asimismo los siguientes objetivos particulares a alcanzar:
 
-\begin{itemize}
-	\item Realizar una revisión sistemática del estado del arte en cuanto a algoritmos de detección de estructuras en el ámbito astronómico y de las redes sociales.
-	\item Determinar la viabilidad de extrapolar algoritmos de uno de los ámbitos mencionados al otro, específicamente en lo que respecta a detección de estructuras determinadas, sobre estructuras de tipo grafo.
-	\item Establecer los atributos mínimos necesarios para el entrenamiento de un algoritmo de detección asistido por machine learning.
-	\item Obtener un modelo de machine learning confiable para la detección de estructuras estelares, en el ámbito específico de aplicación.
-\end{itemize}
+\begin{enumerate}\addtocounter{enumi}{1}
+	\item[]
+	%\setcounter{enumi}{1}
+	\begin{enumerate}[label*=\arabic{*}]
+		\item \label{objetivo:particular1} Realizar una revisión sistemática del estado del arte en cuanto a algoritmos de detección de estructuras en el ámbito astronómico y de las redes sociales.
+		
+		\item \label{objetivo:particular2} Determinar la viabilidad de extrapolar algoritmos utilizados en el ámbito de las redes sociales, para su aplicación en el ámbito astronómico, específicamente en lo que respecta a detección de estructuras determinadas, sobre estructuras de tipo grafo.
+		
+		\item \label{objetivo:particular3} Establecer los atributos mínimos necesarios para el entrenamiento de un algoritmo de detección asistido por machine learning.
+		
+		\item \label{objetivo:particular4} Obtener un modelo de machine learning confiable para la detección de estructuras estelares, en el ámbito específico de aplicación.
+	\end{enumerate}
+\end{enumerate}
 
 \section {Metodología}
 
-Para alcanzar el objetivo final mencionado, se pretende realizar las siguientes actividades:
+Para alcanzar los objetivos de la presente tesis, tanto a nivel general general como los objetivos particulares, se realizarán las siguientes actividades:
 
-\begin{itemize}
-	\item Se analizarán las técnicas de reconocimiento de agrupaciones estelares existentes, realizando una revisión sistemática de literatura, para determinar la efectividad de detección de cada una de ellas a fin de obtener una línea base.
+
+\begin{enumerate}[label*=\fbox{A\arabic*}]
+	\item Para cumplimentar con el objetivo \textbf{\ref{objetivo:particular1}} se analizarán las técnicas de reconocimiento de agrupaciones estelares existentes, realizando una revisión sistemática de literatura, para determinar la efectividad de detección de cada una de ellas a fin de obtener una línea base.
 	
-	\item Se identificarán las principales técnicas de reconocimiento de comunidades en redes sociales, por medio de una revisión sistemática de literatura, a fines de establecer qué algoritmos son aplicables en el dominio astronómico de acuerdo a sus características.
+	\item Para cumplimentar con el objetivo \textbf{\ref{objetivo:particular1}} se identificarán las principales técnicas de reconocimiento de comunidades en redes sociales, por medio de una revisión sistemática de literatura, a fines de establecer qué algoritmos son aplicables en el dominio astronómico de acuerdo a sus características.
 	
-	\item Se construirá un entorno de pruebas, con un set de datos acotado y conocido, sobre el cual se realizarán la aplicación de un algoritmo de detección de comunidades originalmente diseñado para redes sociales, y se analizará el resultado obtenido de su aplicación sobre un dominio astronómico, a fin de validar conceptualmente la propuesta de trabajo de esta tesis.
+	\item Para alcanzar el objetivo \textbf{\ref{objetivo:particular2}} se construirá un entorno de pruebas, con un set de datos acotado y conocido, a partir del repositorio GAIA\footnote{\url{https://gea.esac.esa.int/archive/}} y similares (ESO\footnote{\url{http://archive.eso.org/cms.html}}, NASA\footnote{\url{https://nssdc.gsfc.nasa.gov/astro/}}, etc.), sobre el cual se realizará la aplicación de un algoritmo de detección de comunidades originalmente diseñado para redes sociales, y se analizará el resultado obtenido de su aplicación sobre un dominio astronómico, a fin de validar conceptualmente la propuesta de trabajo de esta tesis.
 	
-	\item Mediante el análisis de sets de datos descargados de distintas redes sociales se determinarán los atributos entrenables por medio de técnicas de machine learning y los mismos se extrapolarán a sets de datos astronómicos para determinar la viabilidad de utilizar las mismas técnicas para detectar atributos de un dominio diferente.
+	\item Mediante el análisis de sets de datos de redes sociales,
+	descargados de repositorios como el Stanford Large Network Dataset Collection\footnote{\url{https://snap.stanford.edu/data/}} o el Network Data Repository\footnote{\url{https://networkrepository.com/soc.php}}, se determinarán los atributos entrenables por medio de técnicas de machine learning y los mismos se extrapolarán a sets de datos astronómicos para cumplimentar con los objetivos \textbf{\ref{objetivo:particular2}} y \textbf{\ref{objetivo:particular3}}.
 		
-	\item Se modelará y entrenará un mecanismo de machine learning con los atributos astronómicos, ya sean mediciones reales o sus equivalentes simulados, utilizando las librerías más populares y probadas en la actualidad, como TensorFlow, PyTorch, SciKit-Learn o Keras, para determinar la eficacia en la detección de clusters.
+	\item Para cumplir con el objetivo \textbf{\ref{objetivo:particular3}} se modelará y entrenará un mecanismo de machine learning con los atributos astronómicos, ya sean mediciones reales o sus equivalentes simulados, utilizando las librerías más populares y probadas en la actualidad, como TensorFlow, PyTorch, SciKit-Learn o Keras, para determinar la eficacia en la detección de clusters.
 	
-	\item Se utilizará el algoritmo, una vez entrenado, para detección de comunidades sobre muestras reales a fin de determinar si la eficacia se mantiene sobre muestras de datos reales y medir su eficiencia.
+	\item Para cumplimentar con los objetivos \textbf{\ref{objetivo:particular3}} y \textbf{\ref{objetivo:particular4}} se utilizará el algoritmo, una vez entrenado, para detección de comunidades sobre muestras reales, como los datos obtenidos del repositorio GAIA mencionado anteriormente, analizando la cantidad de atributos reconocidos, la cantidad de agrupaciones, el tiempo de reconocimiento y otras características escenciales, a fin de determinar si la eficacia se mantiene sobre muestras de datos reales y medir su eficiencia.
 	
-	\item Se elaborará un procedimiento general para el entrenamiento del algoritmo de detección y la aplicación de la técnica para su utilización en diferentes ámbitos astronómicos o con diferentes muestras, el cual se plasmará en un documento con instrucciones detalladas para el preprocesamiento de los atributos, la selección de los algortimos a utilizar, el entrenamiento de la red y indicaciones para el análsisi de los resultados obtenidos de su aplicación.
-\end{itemize}
+	\item Para alcanzar el objetivo \textbf{\ref{objetivo:particular4}} se elaborará un procedimiento general para el entrenamiento del algoritmo de detección y la aplicación de la técnica para su utilización en diferentes ámbitos astronómicos o con diferentes muestras, el cual se plasmará en un documento con instrucciones detalladas para el preprocesamiento de los atributos, la selección de los algortimos a utilizar, el entrenamiento de la red y indicaciones para el análisis de los resultados obtenidos de su aplicación.
+	
+	\item Para alcanzar el objetivo general \textbf{\ref{objetivo:general}} se publicará de manera regular los avances y resultados obtenidos, a fin de validar los mismos con la comunidad científica.
+\end{enumerate}
+
 
 \section{Resultados esperados}
 
@@ -147,7 +172,10 @@ Para alcanzar el objetivo final mencionado, se pretende realizar las siguientes 
 
 \section {Cronograma y plan general de trabajo}
 
+En la presente sección se presentará la calendarización de actividades, cuyo detalle se encuentra en la sección Metodología.
+
 \begin{figure}[H]
+	\centering
 	\begin{ganttchart}[
 			title label font=\tiny,
 			bar label font=\tiny,
@@ -162,15 +190,16 @@ Para alcanzar el objetivo final mencionado, se pretende realizar las siguientes 
 			bar label node/.append style={align=right}
 		]{2023-01}{2023-12}
 		\gantttitlecalendar{year, month} \\
-		\ganttbar{Estudio bibliográfico}{2023-01}{2023-06} \\
-		\ganttbar{Análisis de técnicas\ganttalignnewline de detección de Clusters}{2023-03}{2023-09} \\
-		\ganttbar{Análisis de técnicas\ganttalignnewline de detección de comunidades}{2023-06}{2023-12}\\
+		%\ganttbar{A1, A2}{2023-01}{2023-12} \\
+		\ganttbar{A1}{2023-01}{2023-09} \\
+		\ganttbar{A2}{2023-03}{2023-12}\\
+		\ganttbar{A8}{2023-06}{2023-12}
 	\end{ganttchart}
 	\caption*{Primer año}
 \end{figure}
 
 \begin{figure}[H]
-	%	\begin{center}
+	\centering
 	\begin{ganttchart}[
 		title label font=\tiny,
 		bar label font=\tiny,
@@ -185,15 +214,15 @@ Para alcanzar el objetivo final mencionado, se pretende realizar las siguientes 
 			bar label node/.append style={align=right}
 		]{2024-01}{2024-12}
 		\gantttitlecalendar{year, month} \\
-		\ganttbar{Definición y extrapolación\ganttalignnewline de atributos}{2024-01}{2024-04}\\
-		\ganttbar{Elaboración de\ganttalignnewline modelo de ML}{2024-04}{2024-10}\\
-		\ganttbar{Entrenamiento de\ganttalignnewline modelo de ML}{2024-06}{2024-12}\\
+		\ganttbar{A3}{2024-01}{2024-06}\\
+		\ganttbar{A4}{2024-06}{2024-12}\\
+		\ganttbar{A8}{2024-01}{2024-12}
 	\end{ganttchart}
 	\caption*{Segundo año}
 \end{figure}
 
 \begin{figure}[H]
-	%	\begin{center}
+	\centering
 	\begin{ganttchart}[
 		title label font=\tiny,
 		bar label font=\tiny,
@@ -208,15 +237,16 @@ Para alcanzar el objetivo final mencionado, se pretende realizar las siguientes 
 			bar label node/.append style={align=right}
 		]{2025-01}{2025-12}
 		\gantttitlecalendar{year, month} \\
-		\ganttbar{Prueba de\ganttalignnewline modelo de ML}{2025-01}{2025-05}\\
-		\ganttbar{Detección de clusters\ganttalignnewline sobre datos astronómicos}{2025-03}{2025-09}\\
-		\ganttbar{Analisis comparativo\ganttalignnewline contra otras técnicas}{2025-06}{2025-12}
+		\ganttbar{A4}{2025-01}{2025-05}\\
+		\ganttbar{A5}{2025-03}{2025-09}\\
+		\ganttbar{A6}{2025-06}{2025-12}\\
+		\ganttbar{A8}{2025-01}{2025-12}
 	\end{ganttchart}
 	\caption*{Tercer año}
 \end{figure}
 
 \begin{figure}[H]
-	%	\begin{center}
+	\centering
 	\begin{ganttchart}[
 		title label font=\tiny,
 		bar label font=\tiny,
@@ -232,9 +262,10 @@ Para alcanzar el objetivo final mencionado, se pretende realizar las siguientes 
 			bar label node/.append style={align=right}
 		]{2026-01}{2026-12}
 		\gantttitlecalendar{year, month} \\
-		\ganttbar{Elaboración de Tesis}{2026-01}{2026-06}\\
-		\ganttbar{Revisión de Tesis}{2026-05}{2026-09}\\
-		\ganttmilestone{Defensa de Tesis}{2026-10}
+		\ganttbar{A8}{2026-01}{2026-06}\\
+		\ganttbar{Elaboración\ganttalignnewline de Tesis}{2026-01}{2026-06}\\
+		\ganttbar{Revisión\ganttalignnewline de Tesis}{2026-05}{2026-10}\\
+		\ganttmilestone{Defensa de Tesis}{2026-11}\\
 	\end{ganttchart}
 	\caption*{Cuarto año}
 \end{figure}
