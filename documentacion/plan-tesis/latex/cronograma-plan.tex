@@ -1,0 +1,95 @@
+\begin{figure}[H]
+	\centering
+	\begin{ganttchart}[
+			title label font=\tiny,
+			bar label font=\tiny,
+			y unit chart=0.7cm,
+			hgrid,
+			vgrid,
+			x unit=0.8cm,
+			bar/.append style={draw=Black, fill=RoyalBlue!75},
+			time slot format=isodate-yearmonth,
+			time slot unit=month,
+			newline shortcut=true,
+			bar label node/.append style={align=right}
+		]{2023-01}{2023-12}
+		\gantttitlecalendar{year, month} \\
+		%\ganttbar{A1, A2}{2023-01}{2023-12} \\
+		\ganttbar{A1}{2023-01}{2023-09} \\
+		\ganttbar{A2}{2023-03}{2023-12}\\
+		\ganttbar{A8}{2023-06}{2023-12}
+	\end{ganttchart}
+	\caption*{Primer año}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\begin{ganttchart}[
+		title label font=\tiny,
+		bar label font=\tiny,
+		y unit chart=0.7cm,
+			hgrid,
+			vgrid,
+			x unit=0.8cm,
+			bar/.append style={draw=Black, fill=RoyalBlue!75},
+			time slot format=isodate-yearmonth,
+			time slot unit=month,
+			newline shortcut=true,
+			bar label node/.append style={align=right}
+		]{2024-01}{2024-12}
+		\gantttitlecalendar{year, month} \\
+		\ganttbar{A3}{2024-01}{2024-06}\\
+		\ganttbar{A4}{2024-06}{2024-12}\\
+		\ganttbar{A8}{2024-01}{2024-12}
+	\end{ganttchart}
+	\caption*{Segundo año}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\begin{ganttchart}[
+		title label font=\tiny,
+		bar label font=\tiny,
+		y unit chart=0.7cm,
+			hgrid,
+			vgrid,
+			x unit=0.8cm,
+			bar/.append style={draw=Black, fill=RoyalBlue!75},
+			time slot format=isodate-yearmonth,
+			time slot unit=month,
+			newline shortcut=true,
+			bar label node/.append style={align=right}
+		]{2025-01}{2025-12}
+		\gantttitlecalendar{year, month} \\
+		\ganttbar{A4}{2025-01}{2025-05}\\
+		\ganttbar{A5}{2025-03}{2025-09}\\
+		\ganttbar{A6}{2025-06}{2025-12}\\
+		\ganttbar{A8}{2025-01}{2025-12}
+	\end{ganttchart}
+	\caption*{Tercer año}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\begin{ganttchart}[
+		title label font=\tiny,
+		bar label font=\tiny,
+		milestone label font=\tiny,
+		y unit chart=0.7cm,
+			hgrid,
+			vgrid,
+			x unit=0.8cm,
+			bar/.append style={draw=Black, fill=RoyalBlue!75},
+			time slot format=isodate-yearmonth,
+			time slot unit=month,
+			newline shortcut=true,
+			bar label node/.append style={align=right}
+		]{2026-01}{2026-12}
+		\gantttitlecalendar{year, month} \\
+		\ganttbar{A8}{2026-01}{2026-06}\\
+		\ganttbar{Escritura\ganttalignnewline de Tesis}{2026-01}{2026-10}\\
+		%\ganttbar{Revisión\ganttalignnewline de Tesis}{2026-05}{2026-10}\\
+		%\ganttmilestone{Defensa de Tesis}{2026-11}\\
+	\end{ganttchart}
+	\caption*{Cuarto año}
+\end{figure}
