@@ -1,0 +1,238 @@
+\documentclass[
+	11pt,oneside,a4paper
+]{article}
+% \documentclass[
+% 	11pt,oneside,a4paper,
+% 	headsepline,footsepline,
+% 	%plainfootsepline,plainheadsepline,
+% 	fleqn,
+% 	%flushbottom,
+% 	%raggedbottom
+% ]{memoir}
+%]{scrartcl}
+%\usepackage[a4paper, total={6in, 8in}]{geometry}
+
+%------------------------------------------
+% FLAG DE BORRADOR
+%------------------------------------------
+%\def\borrador{}
+%------------------------------------------
+
+%------------------------------------------
+% CONFIGURACION DEL DOCUMENTO
+%------------------------------------------
+\input{config}
+
+\renewcommand\fbox{\fcolorbox{gray!50}{white}}
+
+\title{Detección de cúmulos estelares en galaxias cercanas utilizando técnicas de Machine Learning y algoritmos de aplicación en redes sociales}
+
+% \author{Martín Casatti$^1$ \and Marcelo Marciszack$^1$ \and Carlos Feinstein$^2$ \and Analía Guzman$^1$}
+
+% Un truco para poner las instituciones
+
+% \date{ %
+% 	$^1$Universidad Tecnológica Nacional \texttt{\{mcasatti\}@frc.utn.edu.ar\\
+% 	$^2$Universidad Nacional de La Plata \texttt{auth3@inst2.edu}
+% } %
+\date{}
+
+
+\begin{document}
+
+\maketitle
+\pagestyle{empty} % Deshabilitar los números de página
+
+\begin{abstract}
+	El presente trabajo expone la hipótesis de trabajo y las actividades en desarrollo de una tesis de doctorado que busca demostrar la viabilidad de la utilización de técnicas de reconocimiento de comunidades en redes sociales pero aplicadas a la detección de clusters estelares en galaxias cercanas. El trabajo expone las condiciones actuales, que dan surgimiento a la necesidad del uso de técnicas de detección automatizada, describe los ámbitos bajo estudio y plantea la hipótesis de trabajo así como las tareas a desarrollar para la consecusión del objetivo general de la tesis.
+\end{abstract}
+
+%\input{titulo}
+
+\ifdefined\borrador
+	\listoftodos
+\fi 
+
+%\section*{IMRAD}
+
+%\includegraphics*[width=.8\textwidth]{imrad.jpg}
+
+% \begin{enumerate}
+% 	\item INTRODUCCION
+% 	\item MATERIALES
+% 	\item RESULTADOS
+% 	\item DISCUSION
+% \end{enumerate}
+
+%\section {Introducción}
+
+El presente trabajo se enmarca en el desarrollo de una tesis doctoral, llevada adelante en forma conjunta por el Centro de Investigación, Desarrollo y Transferencia de Sistemas, de la Universidad Tecnológica Nacional, Facultad Regional Córdoba, con el Instituto de Astrofísica de la Universidad Nacional de La Plata y cuyo objetivo principal es lograr la detección de cúmulos estelares en galaxias cercanas utilizando algoritmos de redes sociales y técnicas de Machine Learning. 
+
+Las agrupaciones estelares, también denominados cúmulos o clusters, han sido objetos reconocidos desde hace tiempo como laboratorios importantes para la investigación astrofísica, siendo muy útiles en varios aspectos, entre los que se pueden destacar los siguientes:
+
+\begin{itemize}
+	\item Contienen muestras estadísticamente significativas de estrellas de aproximadamente la misma edad, con composiciones químicas similares, un amplio rango de masas estelares y localizadas en un volumen relativamente pequeño del espacio, haciéndolas un conjunto ideal para el análisis de características comunes y determinación de los patrones que rigen su surgimiento \parencite{Klessen2000}.
+	\item En relación con el proceso de formación estelar, los cúmulos jóvenes permiten esclarecer la forma y las escalas de tiempo en las que estos mecanismos están activos, así como también permiten analizar su dependendencia de los distintos ambientes interestelares de la Vía Láctea o de otras galaxias \parencite{Fall2012}.
+\end{itemize}
+
+%Los trabajos mencionados se han focalizado en mejorar el conocimiento de nuestra propia Galaxia (y de las Nubes de Magallanes\parencite{Vazquez2008}), pero actualmente hay varios factores que incrementan de forma importante tanto la cantidad de objetos a investigar cómo la metodología para hacerlo.
+
+En la actualidad existe una gran cantidad de información de las galaxias cercanas (a varios Mpc\footnote{Megaparsec, medida de distancia, aproximadamente 3.26 millones de años luz}) debido, en gran parte, a que el Telescopio Espacial Hubble (HST) ha permitido obtener datos con alta resolución espacial utilizando varias cámaras de campo amplio (WFPC2; ACS) \parencite{Dalcanton2009}.
+
+Se cuenta con una enorme cantidad de datos proveniente de las varias observaciones continuas que se están realizando y que se proyectan realizar en modo “survey”\footnote{Técnica que consiste en realizar un mapeo sistemático de una porción determinada de la esfera celeste sin concentrarse de manera puntual en ningún objeto.} (p.e. VVV\footnote{\url{https://vvvsurvey.org/}} o LSST\footnote{\url{https://www.lsst.org/}}) que necesitan ser estudiados con métodos automáticos. 
+
+En este ámbito, los algoritmos de reconocimiento automático de patrones, están teniendo una importante revisión y desarrollo tal como se puede apreciar en el análisis comparativo de Schmeja (2011)\parencite{Schmeja2011}.
+
+%Tal como se desprende de esa publicación, estos algoritmos se basan en analizar sólo las posiciones espaciales para encontrar a los sistemas estelares por sobre-densidades contra el fondo estelar o por su equivalente relacionado con la distribución de distancias entre estrellas.
+
+En otros ámbitos científicos se han aplicado con éxito diversos algoritmos de clustering, como por ejemplo “K-mean”, “Birch”, “Spectral Clustering”, “Dbscan”, etc.\parencite{rodriguez2019clustering}
+
+%Cabe hacer notar que ya se han desarrollado varios algoritmos que han sido aplicados con éxito en otros campos científicos. Entre estos se destacan algoritmos como “K-mean”, “Birch”, “Spectral Clustering”, “Dbscan”, etc.\parencite{rodriguez2019clustering}
+
+Por otra parte, el auge que tiene desde hace algunos años el análisis de redes sociales nos ha brindado otro amplio campo de estudios en el que se pueden apreciar algunos de los atributos que son comunes al problema de la detección de cúmulos estelares, como por ejemplo:
+
+\begin{itemize}
+	\item En el ámbito de las redes sociales también se cuenta con una gran cantidad de datos.
+	\item Existe un conjunto de relaciones no evidentes entre los mismos y
+	\item Un nutrido grupo de atributos analizables a fin de guiar la detección de patrones.
+\end{itemize}
+
+La estructura inherente de dichas redes es la de un grafo, sobre el que se puede realizar multitud de análisis sustentados por la Teoría de Grafos \parencite{West2001}.
+
+Diversos estudios, tanto de la topología de dichas redes \parencite{Barnes1983} como de las características que presentan sus participantes, brindan un fértil campo para el estudio de algoritmos de detección de patrones estructurales, muchos de ellos asistidos por técnicas de Machine Learning \parencite{Alharbi2021}.
+
+%En la actualidad el análisis de algoritmos y su aplicación para la determinación de las características de las redes sociales es un campo en permanente evolución.
+
+Algoritmos como los de ``detección de comunidades'' \parencite{wang2015review}, ``detección de anomalías'' \parencite{kaur2016survey}, ``determinación de subredes similares'', ``clustering dinámico'' \parencite{boccaletti2007detecting} y ``predicción de enlaces más probables'' \parencite{kushwah2016review}, son un ámbito en donde las técnicas de aprendizaje supervisado está encontrando cada vez más aplicaciones.
+
+%El entrenamiento de modelos específicos para la detección de este tipo de estructuras está dando lugar a cada vez más y mejores caracterizaciones de redes con una enorme cantidad de nodos y de relaciones, y abriendo el desarrollo a algoritmos más complejos y potentes.
+
+Existen actualmente estudios comparativos de diversos algoritmos de detección de comunidades en redes \parencite{PhysRevE.80.056117} que presentan resultados prometedores para su aplicación, o las de sus derivados, en ámbitos diferentes.%, tal como es el enfoque del presente trabajo.
+
+%\section {Justificación}
+
+La puesta en funcionamiento de instrumentos de observación astronómica cada vez más potentes, durante los últimos 50 años, ha dado lugar a un crecimiento exponencial de la cantidad de objetos detectados, los que requieren análisis y estudio. 
+
+Sin ir demasiado lejos, el recientemente lanzado telescopio James Webb produce casi 60 Gigabytes de información al día, la cual no puede ser almacenada de manera local y debe ser transmitida de inmediato el centro de control de misión\parencite{webdata}, mientras que el proyecto ``Legacy Survey of Space and Time'' (Rubin/LSST), basado en el observatorio Vera C. Rubin\footnote{\url{https://rubinobs.org/}}, en Chile, se estima que producirá 20 TB (terabytes) de información cada noche, durante una vida útil de al menos 10 años \parencite{Telescope2021Jul}.
+
+Estos volúmenes de datos hacen que sea imprescindible la utilización de mecanismos automáticos para su análisis. %, lo que brinda una oportunidad inmejorable para el desarrollo y adecuación de algoritmos y la aplicación de técnicas avanzadas de Machine Learning provenientes de diversos dominios, en el ámbito astronómico.
+
+%Es en este sentido que creemos que los resultados del presente trabajo\revisar{Esto} pueden aportar al avance de dichas técnicas y colaborar, en última instancia, en el avance científico y tecnológico.
+
+%\section*{Objeto de estudio}
+
+%El objeto de estudio, en particular, serán las galaxias espirales o irregulares, cercanas a la Vía Láctea, las cuales cuentan con una cantidad apreciable de estrellas azules, de gran importancia para la comunidad astronómica ya que son estrellas jóvenes en estadíos iniciales de evolución.
+
+%\section {Hipótesis de trabajo}
+
+%Es la intención de esta tesis doctoral de posgrado demostrar la viabilidad de la aplicación de técnicas inicialmente diseñadas para la caracterización de redes sociales, en el ámbito de la astronomía, para la detección de cúmulos estelares, aprovechando de esta manera los estudios existentes en la materia pero enfocados en un nuevo ámbito de aplicación.
+
+La tésis postula que:
+
+\begin{quote}
+	\emph{
+	La aplicación de técnicas de machine learning para el entrenamiento de algoritmos inteligentes posibilitará que los algoritmos de detección y caracterización de comunidades en redes sociales, puedan detectar agrupaciones estelares, a partir del correspondiente cambio en los atributos descriptivos y estructurales, de acuerdo al nuevo ámbito de aplicación.}
+\end{quote}
+
+% \section {Objetivos}
+
+% \subsection{Objetivo principal} 
+
+
+% \begin{enumerate}
+% 	\item \label{objetivo:general} El presente trabajo tiene como finalidad demostrar la viabilidad de la utilización de técnicas algorítmicas de aplicación en el ámbito de redes sociales para la detección de agrupaciones estelares en galaxias cercanas.	
+% \end{enumerate}
+
+%Se analizará la viabilidad de dichas técnicas y se contrastarán los resultados obtenidos con respecto a los de otras técnicas, diseñadas específicamente para el ámbito astronómico, a fin de sacar conclusiones adecuadas al ámbito de aplicación específico.
+
+% \subsection{Objetivos secundarios}
+
+% Se plantean asimismo los siguientes objetivos particulares a alcanzar:
+
+% \begin{enumerate}\addtocounter{enumi}{1}
+% 	\item[]
+% 	%\setcounter{enumi}{1}
+% 	\begin{enumerate}[label*=\arabic{*}]
+% 		\item \label{objetivo:particular1} Realizar una revisión sistemática del estado del arte en cuanto a algoritmos de detección de estructuras en el ámbito astronómico y de las redes sociales.
+		
+% 		\item \label{objetivo:particular2} Determinar la viabilidad de extrapolar algoritmos utilizados en el ámbito de las redes sociales, para su aplicación en el ámbito astronómico, específicamente en lo que respecta a detección de estructuras determinadas, sobre estructuras de tipo grafo.
+		
+% 		\item \label{objetivo:particular3} Establecer los atributos mínimos necesarios para el entrenamiento de un algoritmo de detección asistido por machine learning.
+		
+% 		\item \label{objetivo:particular4} Obtener un modelo de machine learning confiable para la detección de estructuras estelares, en el ámbito específico de aplicación.
+% 	\end{enumerate}
+% \end{enumerate}
+
+%\section {Metodología}
+
+%Para alcanzar los objetivos de la presente tesis, tanto a nivel general general como los objetivos particulares, se realizarán las siguientes actividades:
+
+Para ellos se analizarán tanto las técnicas actuales de reconocimiento de agrupaciones estelares, como técnicas actuales para reconocimiento de comunidades en redes sociales. Se prevé construir un entorno de pruebas, basado en datos del repositorio GAIA\footnote{\url{https://gea.esac.esa.int/archive/}} o similar (ESO\footnote{\url{http://archive.eso.org/cms.html}}, NASA\footnote{\url{https://nssdc.gsfc.nasa.gov/astro/}}, etc.), sobre el cual se realizará la aplicación de un algoritmo de detección de comunidades originalmente diseñado para redes sociales, y se analizará el resultado obtenido de su aplicación sobre un dominio astronómico, a fin de validar conceptualmente la propuesta de trabajo.
+
+Por otra parte se realizará un análisis de sets de datos de redes sociales, descargados de repositorios como el Stanford Large Network Dataset Collection\footnote{\url{https://snap.stanford.edu/data/}} o el Network Data Repository\footnote{\url{https://networkrepository.com/soc.php}}, en base al cual se determinarán los atributos entrenables por medio de técnicas de machine learning y los mismos se extrapolarán a sets de datos astronómicos.
+
+Por último se modelará y entrenará un mecanismo de machine learning con los atributos astronómicos, ya sean mediciones reales o sus equivalentes simulados, utilizando las librerías más populares y probadas en la actualidad, como TensorFlow, PyTorch, SciKit-Learn o Keras, para determinar la eficacia en la detección de clusters. Este modelo se pondrá a prueba, mediante su aplicación a los datos de GAIA previamente mencionados, y se analizará la eficación y precisión de la detección de cúmulos estelares que se hubiera alcanzado.
+
+% \begin{enumerate}[label*=\fbox{A\arabic*}]
+% 	\item Se analizarán las técnicas de reconocimiento de agrupaciones estelares existentes, realizando una revisión sistemática de literatura, para determinar la efectividad de detección de cada una de ellas a fin de obtener una línea base.
+	
+% 	\item Se identificarán las principales técnicas de reconocimiento de comunidades en redes sociales, por medio de una revisión sistemática de literatura, a fines de establecer qué algoritmos son aplicables en el dominio astronómico de acuerdo a sus características.
+	
+% 	\item Se construirá un entorno de pruebas, con un set de datos acotado y conocido, a partir del repositorio GAIA\footnote{\url{https://gea.esac.esa.int/archive/}} y similares (ESO\footnote{\url{http://archive.eso.org/cms.html}}, NASA\footnote{\url{https://nssdc.gsfc.nasa.gov/astro/}}, etc.), sobre el cual se realizará la aplicación de un algoritmo de detección de comunidades originalmente diseñado para redes sociales, y se analizará el resultado obtenido de su aplicación sobre un dominio astronómico, a fin de validar conceptualmente la propuesta de trabajo de esta tesis.
+	
+% 	\item Mediante el análisis de sets de datos de redes sociales,
+% 	descargados de repositorios como el Stanford Large Network Dataset Collection\footnote{\url{https://snap.stanford.edu/data/}} o el Network Data Repository\footnote{\url{https://networkrepository.com/soc.php}}, se determinarán los atributos entrenables por medio de técnicas de machine learning y los mismos se extrapolarán a sets de datos astronómicos.
+		
+% 	\item Se modelará y entrenará un mecanismo de machine learning con los atributos astronómicos, ya sean mediciones reales o sus equivalentes simulados, utilizando las librerías más populares y probadas en la actualidad, como TensorFlow, PyTorch, SciKit-Learn o Keras, para determinar la eficacia en la detección de clusters.
+	
+% 	\item Se utilizará el algoritmo, una vez entrenado, para detección de comunidades sobre muestras reales, como los datos obtenidos del repositorio GAIA mencionado anteriormente, analizando la cantidad de atributos reconocidos, la cantidad de agrupaciones, el tiempo de reconocimiento y otras características escenciales, a fin de determinar si la eficacia se mantiene sobre muestras de datos reales y medir su eficiencia.
+	
+% 	\item Se elaborará un procedimiento general para el entrenamiento del algoritmo de detección y la aplicación de la técnica para su utilización en diferentes ámbitos astronómicos o con diferentes muestras, el cual se plasmará en un documento con instrucciones detalladas para el preprocesamiento de los atributos, la selección de los algortimos a utilizar, el entrenamiento de la red y indicaciones para el análisis de los resultados obtenidos de su aplicación.
+	
+% 	\item Se publicará de manera regular los avances y resultados obtenidos, a fin de validar los mismos con la comunidad científica.
+% \end{enumerate}
+
+
+%\section{Resultados esperados}
+
+% \begin{itemize}
+% 	\item Se espera, al concluir con el trabajo, contar con un modelo eficaz para la detección de agrupaciones estelares, en muestras de datos reales, con un grado de exactitud al menos comparable a los mecanismos actualmente utilizados en la comunidad astronómica para esa misma finalidad.
+% 	\item Se espera demostrar que los algoritmos desarrollados para la detección de comunidades sobre grafos de redes sociales, con las modificaciones pertinentes, pueden ser una buena alternativa a la detección de comunidades en un ámbito completamente diferente, como es el de las estrellas en galaxias cercanas.
+% 	\item Se espera sentar las bases para el estudio continuo de técnicas no desarrolladas específicamente para el ámbito astronómico, pero de posible aplicación en el mismo.
+% 	\item Se espera ayudar a la comunidad astronómica con una herramienta de simple implementación y que provea resultados valiosos, como complemento a las técnicas ya existentes.
+% \end{itemize}
+
+% \section{Aportes potenciales del trabajo}
+
+% \subsection{Contribución al avance del conocimiento científico y/o tecnológico}
+
+%El proyecto está focalizado en la elaboración de un modelo de detección de patrones estelares a partir de trabajos previos desarrollados sobre comunidades de redes sociales.
+
+% La demostración de viabilidad de dichas técnicas permitirá ampliar el espectro de herramientas utilizables para la detección de cúmulos estelares y propiciará el estudio de la aplicación de técnicas similares en ámbitos diversos.
+
+% Asimismo permitirá establecer la validez de ciertas técnicas de detección de patrones en grafos de cualquier tipo sobre un conjunto de datos astronómicos.
+
+% \subsection{Contribución a la formación de recursos humanos}
+
+% El Ing. Martin Casatti se desempeña actualmente como docente investigador en el grupo dirigido por el Ing. Roberto Muñoz, que trabaja en el marco del Centro de Investigación, Desarrollo y Transferencia de Sistemas, dirigido por el Dr. Ing. Marcelo Marciszack, director propuesto para este trabajo de posgrado.
+
+% El trabajo de la presente propuesta se desarrollará en el marco de los grupos de investigación pertenecientes a dicho Centro.
+
+% \subsection{Transferencia prevista de los resultados, aplicaciones o conocimientos derivados del proyecto}
+
+% La transferencia de los resultados o conocimientos del proyecto se realizará por medio de publicaciones internacionales bajo referato, presentaciones en reuniones científicas y formación de recursos humanos.
+
+% Los resultados se compartirán y/o transferiran a instituciones relacionadas con la astronomía que estén interesadas en la aplicación de las técnicas aquí desarrolladas.
+
+
+%\section {Bibliografía y material de referencia}
+
+% Material CITADO, entra bajo el titulo REFERENCIAS
+%\printbibliography[category=cited,title={Referencias},heading=subbibliography]
+\printbibliography[heading=subbibliography]
+
+% Material NO CITADO, entra bajo el titulo BIBLIOGRAFIA ADICIONAL
+%\defbibnote{bibnote}{El presente material bibliográfico se ha utilizado como material de estudio pero no se ha citado directamente en el texto.}
+%\printbibliography[title={Bibliografía adicional},prenote=bibnote,notcategory=cited,heading=subbibliography]
+
+\end{document}

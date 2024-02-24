@@ -1,0 +1,68 @@
+
+\setlength {\marginparwidth }{2cm}
+
+%------------------------------------------
+% INCLUSION DE PAQUETES COMUNES
+%------------------------------------------
+\input{./common/packages}
+\usepackage{csquotes}
+\usepackage[]{enumitem}
+%------------------------------------------
+% CONFIGURACION DE BIBLIOGRAFIA
+%------------------------------------------
+\usepackage[
+	backend=biber,
+	natbib=true,
+	sorting=anyt,  %% Alfabetico
+	%sorting=none,	%% En orden de aparición
+	%style=nature,
+	style=authoryear-ibid,
+	%style=numeric,
+	%style=unsrt
+	%citestyle=numeric
+]{biblatex}
+\addbibresource{refs_used.bib}
+%\nocite{*}
+
+%\DeclareBibliographyCategory{cited}
+%\AtEveryCitekey{\addtocategory{cited}{\thefield{entrykey}}}
+%\addbibresource{refs_used.bib}
+%\BiblatexSplitbibDefernumbersWarningOff
+
+\urlstyle{sf}
+
+\ifdefined\borrador
+	\SetWatermarkText{Borrador}
+	\SetWatermarkScale{0.8}
+	\SetWatermarkLightness{0.9}
+\else
+	\SetWatermarkText{}
+\fi
+
+%------------------------------------------
+% FUENTES
+%------------------------------------------
+%\usepackage[sfdefault,scaled=1]{FiraSans}
+%\usepackage[libertine,scaled=1]{newtx}
+\setmainfont[Mapping=tex-text]{Linux Libertine O}
+%------------------------------------------
+
+\graphicspath{
+	{figures/}
+	{images}
+}
+
+%\clearpairofpagestyles
+%\ihead{\today}								% Header interno: Fecha
+% ENCABEZADO
+%\ohead{\textit{Plan de Tesis}}		% Header interno: Titulo
+%\ihead{\raisebox{-7mm}{\includegraphics[height=10mm]{./images/utn-black}}}		% Footer interno: 
+% PIE DE PAGINA
+%\ofoot{Página \pagemark}	% Header externo: Evento
+%Titulo
+%\ohead{\raisebox{-10mm}{\includegraphics[height=10mm]{./images/MISI3}}}
+
+% INTERLINEADO 1 1/2 
+%\OnehalfSpacing
+
+\pgfplotsset{compat=1.18}

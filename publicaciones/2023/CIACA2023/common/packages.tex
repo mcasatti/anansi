@@ -1,0 +1,108 @@
+% ======================================================
+% PAQUETES DE GESTION DE IDIOMA Y CORRECCION
+% ======================================================
+\usepackage[utf8]{inputenc}
+%\usepackage[T1]{fontenc}
+\usepackage{fontspec}
+\usepackage[spanish]{babel}
+
+% ======================================================
+% GESTION DE COLORES Y GRAFICOS
+% ======================================================
+\usepackage{graphicx}
+\usepackage[dvipsnames,svgnames]{xcolor}
+
+% ======================================================
+% MEJORA LA LEGIBILIDAD GENERAL DEL DOCUMENTO Y LAYOUT
+% ======================================================
+% Microtype tiene que preceder a Ragged2e
+\usepackage[babel=true,expansion=true,protrusion=true]{microtype}
+% Ragged2e tiene que ir despues de microtype para funcionar correctamente sino cambia las alineaciones y no quedan bien
+\usepackage{ragged2e}
+% Permite utilizar encabezados y pies de pagina simples con KOMA-Script
+%\usepackage [singlespacing=true]{scrlayer-scrpage}
+% Permite imprimir el layout de un documento, con toda la informacion importante
+% mediante el comando
+% \layout (en document)
+% o
+% \currentpage \pagedesign
+% \currentpage \pagediagram \pagevalues
+%\usepackage{layouts}
+\usepackage{float}
+\usepackage{wrapfig2}
+\usepackage{caption}
+% Para poder tachar texto con \uwave{}, uwave{}, sout{}
+\usepackage[normalem]{ulem} % El parametro normalem es para no alterar el emphasis (italica)
+
+% ======================================================
+% GRAFICOS, CHARTS y CUADROS
+% ======================================================
+\usepackage{tkz-graph}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usetikzlibrary{
+	arrows,
+	decorations.pathmorphing,
+	backgrounds,
+	positioning,
+	calc,
+	fit,
+	petri,
+	quotes,
+	% Este paquete produce errores usado en conjunto con tkz-graph
+	% babel,	
+	arrows.meta,
+	decorations.pathreplacing,
+	shapes,
+	datavisualization,
+	plotmarks
+}
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage[most]{tcolorbox}
+
+% ======================================================
+% TODOLIST
+% ======================================================
+\usepackage[colorinlistoftodos,textsize=tiny]{todonotes}
+\usepackage{xargs}
+
+\newcommandx{\unsure}[2][1=]{\todo[linecolor=red,backgroundcolor=red!25,bordercolor=red,#1]{#2}}
+\newcommandx{\change}[2][1=]{\todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}}
+\newcommandx{\info}[2][1=]{\todo[linecolor=green,backgroundcolor=green!25,bordercolor=green,#1]{#2}}
+\newcommandx{\improvement}[2][1=]{\todo[linecolor=plum,backgroundcolor=plum!25,bordercolor=plum,#1]{#2}}
+\newcommandx{\thiswillnotshow}[2][1=]{\todo[disable,#1]{#2}}
+
+\ifdefined\borrador
+	\newcommand{\revisar}[1]{\todo[backgroundcolor=yellow!50]{\textbf{Revisar:} #1}}
+	\newcommand{\ampliar}{\todo[backgroundcolor=blue!30]{Ampliar}}
+	\newcommand{\revisarcita}{\colorbox{red}{\textcolor{white}{\ CITA\ }}}
+	\newcommand{\sincita}{\colorbox{red}{\textcolor{white}{\ CITA\ }}}
+	\newcommand{\faltafigura}{\missingfigure{Falta figura\ldots}}
+	\newcommand{\citaurl}{\todo[backgroundcolor=green!50]{URL}}
+\else
+	\newcommand{\revisar}[1]{}
+	\newcommand{\ampliar}{}
+	\newcommand{\revisarcita}{}
+	\newcommand{\sincita}{}
+	\newcommand{\faltafigura}{}
+	\newcommand{\citaurl}{}
+\fi
+% ======================================================
+% MARCAS DE AGUA
+% ======================================================
+\usepackage{draftwatermark}
+
+% ======================================================
+% GANTT
+% ======================================================
+\usepackage{pgfgantt}
+
+\usepackage{tablefootnote}
+\usepackage{subcaption}
+\usepackage[export]{adjustbox}
+\usepackage[useregional]{datetime2}
+\usepackage{datetime2-calc}
+\usepackage{array}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xstring}
+%\captionsetup[table]{belowskip=2pt}
