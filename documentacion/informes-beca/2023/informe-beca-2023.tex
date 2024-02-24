@@ -1,0 +1,176 @@
+\documentclass[
+	11pt,oneside,a4paper,
+	%headsepline,footsepline,
+	%plainfootsepline,plainheadsepline,
+	fleqn,
+	%flushbottom,
+	%raggedbottom
+	article
+]{memoir}
+
+%------------------------------------------
+% FLAG DE BORRADOR
+%------------------------------------------
+%\def\borrador{}
+%------------------------------------------
+
+\input{config}
+
+\counterwithout{section}{chapter}
+
+\begin{document}
+
+\input{caratula}
+
+\newpage
+
+El presente es el informe de avance de la Tesis de Doctorado en Ingeniería, mención Sistemas de Información, titulada ``Detección de cúmulos estelares en galaxias cercanas utilizando técnicas de Machine Learning y algoritmos de aplicación en redes sociales'', cuyo plan de Tesis ha sido aprobado según resolución Nº 606/2023, de fecha 26 de Abril de 2023, siendo los directores de la misma el Dr. Ing. Marcelo Marciszack (DIRECTOR), y el Dr. Carlos Feinstein (CO-DIRECTOR).
+
+Se ha concedido al tesista el beneficio de una Beca, aprobada por Resolución de Consejo Superior Nº 1163/2022, en el marco de la cual es encuentra el presente informe de avance.
+
+\tableofcontents
+
+\section {Cursos y seminarios realizados}
+
+Durante el presente año no se han realizado cursos y capacitaciones de posgrado con validez para esta Tesis.
+
+%\subsection{Planificación y Prácticas de Enseñanza con el Enfoque de Competencias}
+
+% Curso asincrónico, de 6 semanas de duración, con 20hs cátedra, cuyos objetivos son:
+
+% \begin{itemize}
+% 	\item Contribuir a la elaboración de las planificaciones para la implementación del nuevo diseño curricular de cada carrera (diseños curriculares adecuados).
+% 	\item Presentar fundamentos básicos de la Didáctica general y específicas y su aporte para la planificación.
+% 	\item Contribuir a la selección de técnicas y metodologías adecuadas a cada una de las disciplinas y carreras.
+% 	\item Promover la coordinación horizontal, vertical y transversal entre las asignaturas.
+% 	\item Facilitar el intercambio y el trabajo colaborativo en el equipo docente
+% 	\item Incentivar el debate acerca de modelos de evaluación de enseñanza por competencias.
+% \end{itemize}
+
+% Responsable: Dra. Julieta Rozenhauz
+
+% Estado: CURSANDO
+
+\section {Avances teóricos y metodológicos realizados}
+
+\subsection{Relevamiento de fuentes de datos}
+
+Se realizó un relevamiento detallado de las posibles fuentes de datos astronómicos y de redes sociales para su utilización durante el desarrollo de la tesis.
+
+En dicho análisis preliminar se tuvieron en cuenta criterios tales como la accesibilidad de la información, la cantidad de datos, el tipo de atributos de los datos almacenados etc. Dentro de los más prometedores se encontaron los siguientes:
+
+
+\begin{description}
+	\item[VVV:] Un proyecto de la Organización Europea para la Investigación Astronómica del hemisferio Sur, VVV\footnote{\href{https://vvvsurvey.org/}{https://vvvsurvey.org/}} funciona desde 2010 y ya lleva detectados más de 350 cúmulos estelares\cite{borissova2011new}.
+	\item[LSST:] Generado por el observatorio Vera C. Rubin, emplazado en Chile, LSST\footnote{\href{https://www.lsst.org/}{https://www.lsst.org/}} generará aproximadamente 20 terabytes de información por noche, durante los 10 años de duración prevista para el proyecto\cite{tyson2002large,juric2015lsst}.
+	\item[VISCACHA:] El proyecto VISCACHA es un estudio fotométrico diseñado específicamente para cúmulos estelares en la Pequeña y Gran Nube de Magallanes\cite{maia2019viscacha}.
+\end{description}
+
+Con respecto a las fuentes de datos sobre redes sociales, se accedió a Network Repository\footnote{\href{https://networkrepository.com/}{https://networkrepository.com/}} que es un repositorio curado de diferentes datos en formato de grafo, destinado a tareas de investigación y testing de algoritmos\cite{nr}, así como al Stanford Large Network Dataset Collection\footnote{\href{https://snap.stanford.edu/data/}{https://snap.stanford.edu/data/}}, con similares características y mantenido por la universidad de Stanford.
+
+Dentro del mismo se encuentran varios sets de datos de redes sociales, de los cuales los más prometedores resultaron los siguientes:
+
+\begin{description}
+	\item[fb-pages-artists:] Base de datos con relaciones recíprocas entre artistas\footnote{\href{https://networkrepository.com/fb-pages-artist.php}{https://networkrepository.com/fb-pages-artist.php}}. Cuenta con más de 50.000 nodos y 800.000 relaciones.
+	\item[soc-linkedin:] Base de datos con información de LinkedIn\footnote{\href{https://networkrepository.com/soc-linkedin.php}{https://networkrepository.com/soc-linkedin.php}}.
+	\item[com-Youtube:] Base de datos para el estudio de comunidades en Youtube\footnote{\href{https://snap.stanford.edu/data/com-Youtube.html}{https://snap.stanford.edu/data/com-Youtube.html}}. Cuenta con aproximadamente 1 millón de nodos y casi 3 millones de relaciones\cite{yang2012defining}.
+\end{description}
+
+\subsection{Análisis y selección de base de datos de soporte}
+
+Ante la compra de la base de datos propuesta (OrientDB) por parte de la firma SAP y el congelamiento del proyecto, se resolvió reemplazar el almacenamiento previsto por un proyecto que se encuentre activo, en disponibilidad y con posibilidades de desarrollo durante el tiempo de duración de la tesis.
+
+A tal efecto se evaluó el uso de ArcadeDB, el que tiene como origen una derivación directa de OrientDB, el mismo conjunto de funcionalidad y una base de código activa, en desarrollo y modernizada en comparación al proyecto original\cite{ArcadeDB}.
+
+\subsection{Algoritmos de detección de clusters, estudio sistemático}
+
+Se comenzó la elaboración de un estudio sistemático de los algoritmos actualmente existentes para la detección de clusters y agrupaciones, tanto en el ámbito astronómico\cite{Schmeja2011} como de redes sociales y de propósito general\cite{ahmad2019survey}.
+
+\section {Participación en eventos académicos}
+
+\subsection{CIACA2023}
+
+Con fecha 6/9/2023 se recibió la notificación de la aceptación del paper ``Detección de cúmulos estelares en galaxias cercanas utilizando técnicas de Machine Learning y algoritmos de aplicación en redes sociales'', dentro de la categoría Reflection Paper, para su publicación en la 10º Conferencia Ibero Americana de Computación Aplicada (CIACA2023)\footnote{\href{https://ciaca-conf.org/}{https://ciaca-conf.org/}}, desarrollada durante los días 22 y 23 de Octubre de 2023, en Madeira Portugal.
+
+\subsection{CoNaIISI 2023}
+
+Se aprobó la publicación de un paper titulado ``Indicadores cienciométricos preliminares sobre la investigación estudiantil en CoNaIISI'', en el congreso CoNaIISI 2023\footnote{\href{https://frtutn.cloud/conaiisi/}{https://frtutn.cloud/conaiisi/}}. El tesista participa en calidad de autor y es el responsable, en el proyecto de investigación, de la implementación de la base de datos de grafos que dá soporte a las estadísticas e indicadores, siendo ésta la misma tecnología que se utilizará en el desarrollo de la tesis para la implementación del almacenamiento de datos astronómicos bajo análisis.
+
+
+\section {Otras actividades que considere importante consignar}
+
+\subsection{X Congreso Nacional de Extensión Universitaria}
+
+Realizado durante los días 29, 30 y 31 de Marzo de 2023, en la Universidad Nacional de La Pampa\footnote{\href{https://www.unlpam.edu.ar/XCongresoExtension/}{https://www.unlpam.edu.ar/XCongresoExtension/}}, el tesista participó en charlas y conversatorios, como miembro de Room 101, el Grupo de Estudios sobre Ciencia y Ficción dependiente de la Secretaría de Extensión Universitaria de UTN Facultad Regional Córdoba, exponiendo sobre técnicas no tradicionales de divulgación científica y tecnológica y aplicaciones del género de Ciencia Ficción como herramienta didáctica en educación superior.
+
+\subsection{CIRE 2023}
+
+El tesista dictó un taller, durante la III edición del Congreso Internacional de Robótica Educativa\footnote{\href{https://educacion.cordoba.gob.ar/congreso-internacional-de-robotica-educativa/}{https://educacion.cordoba.gob.ar/congreso-internacional-de-robotica-educativa/}}, sobre los usos de la ciencia ficción como generadora de ideas y problemas que luego se pueden volcar en el diseño e implementación de robots. La jornada tuvo lugar los días 1 y 2 de Junio de 2023, en la Universidad Tecnológica Nacional, Facultad Regional Córdoba.
+
+\subsection{Pórtico 7.23 - Universidad Nacional de La Plata}
+
+Durante los días 10 y 11 de Noviembre de 2023, el tesista dictó un taller sobre Inteligencia Artificial y Ética (10 de noviembre) y una Mesa de Debate sobre Inteligencia Artificial y su uso en educación (11 de noviembre), la cual coordinó y moderó. Todo eso en el marco del Encuentro Pórtico 7.23, desarrollado en la Facultad de Ingeniería de la Universidad Nacional de La Plata.
+
+
+\section {Dificultades durante el presente año de trabajo}
+
+No se presentaron dificultades particulares para el desarrollo de las tareas previstas durante el presente año.
+
+\section {Cronograma del Plan de Trabajo para 2024}
+
+Para el período 2024 se propone el siguiente plan de trabajo (Figura \ref{gantt:plan2024}):
+
+\begin{enumerate}
+	\item Mapeo sistemático de literatura relacionada a algoritmos de clustering
+	\item Construcción de infraestructura de almacenamiento y carga de datos de prueba
+	\item Aplicación de algoritmos de clustering astronómico y comparación con clusters conocidos
+	\item Estudio de atributos en grafos de redes sociales para su mapeo como atributos astronómicos
+	\item Publicación de resultados obtenidos
+\end{enumerate}
+
+\begin{figure}[H]
+	\centering
+	\begin{ganttchart}[
+			title label font=\tiny,
+			bar label font=\tiny,
+			y unit chart=0.7cm,
+			hgrid,
+			vgrid,
+			x unit=0.8cm,
+			bar/.append style={draw=Black, fill=RoyalBlue!75},
+			time slot format=isodate-yearmonth,
+			time slot unit=month,
+			newline shortcut=true,
+			bar label node/.append style={align=right}
+		]{2024-01}{2024-12}
+		\gantttitlecalendar{year, month} \\
+		%\ganttbar{A1, A2}{2023-01}{2023-12} \\
+		\ganttbar{1}{2024-01}{2024-04} \\
+		\ganttbar{2}{2024-03}{2024-05}\\
+		\ganttbar{3}{2024-05}{2024-12}\\
+		\ganttbar{4}{2024-07}{2024-12}\\
+		\ganttbar{5}{2024-01}{2024-12}
+	\end{ganttchart}
+	\caption{Año 2024}
+	\label{gantt:plan2024}
+\end{figure}
+
+%\section {Informe del/a director/a de tesis con evaluación sobre el grado de avance logrado en este año o meses de trabajo y sobre el potencial del becario para finalizar su tesis en el tiempo estipulado por la beca.}
+
+%\section {Adjuntar Plan de Tesis}
+
+%\section {Créditos: Indicar si se le han reconocido créditos académicos, total y distribución. En los casos de Doctorados no realizados en la UTN, indicar el porcentaje de créditos obtenidos hasta la presentación del informe, en función del total requerido en el programa de la carrera.}
+
+
+%\section {Bibliografía y material de referencia}
+
+% Material CITADO, entra bajo el titulo REFERENCIAS
+\printbibliography[category=cited,title={Referencias},heading=subbibliography]
+%\printbibliography[heading=subbibliography]
+%\printbibliography
+
+% Material NO CITADO, entra bajo el titulo BIBLIOGRAFIA ADICIONAL
+%\defbibnote{bibnote}{El presente material bibliográfico se ha utilizado como material de estudio pero no se ha citado directamente en el texto.}
+%\printbibliography[title={Bibliografía adicional},prenote=bibnote,notcategory=cited,heading=subbibliography,omitnumbers=true]
+
+\end{document}
