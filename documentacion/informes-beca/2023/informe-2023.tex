@@ -14,7 +14,10 @@
 %\def\borrador{}
 %------------------------------------------
 
+%\def\beca{}
+
 \input{config}
+\usepackage[]{adjustbox}
 
 \counterwithout{section}{chapter}
 
@@ -26,7 +29,9 @@
 
 El presente es el informe de avance de la Tesis de Doctorado en Ingeniería, mención Sistemas de Información, titulada ``Detección de cúmulos estelares en galaxias cercanas utilizando técnicas de Machine Learning y algoritmos de aplicación en redes sociales'', cuyo plan de Tesis ha sido aprobado según resolución Nº 606/2023, de fecha 26 de Abril de 2023, siendo los directores de la misma el Dr. Ing. Marcelo Marciszack (DIRECTOR), y el Dr. Carlos Feinstein (CO-DIRECTOR).
 
+\ifdefined\beca
 Se ha concedido al tesista el beneficio de una Beca, aprobada por Resolución de Consejo Superior Nº 1163/2022, en el marco de la cual es encuentra el presente informe de avance.
+\fi
 
 \tableofcontents
 
@@ -172,5 +177,12 @@ Para el período 2024 se propone el siguiente plan de trabajo (Figura \ref{gantt
 % Material NO CITADO, entra bajo el titulo BIBLIOGRAFIA ADICIONAL
 %\defbibnote{bibnote}{El presente material bibliográfico se ha utilizado como material de estudio pero no se ha citado directamente en el texto.}
 %\printbibliography[title={Bibliografía adicional},prenote=bibnote,notcategory=cited,heading=subbibliography,omitnumbers=true]
+
+\vspace{3cm}
+
+%\includegraphics[right]{firma_martin_ajustada.jpg}
+\adjustimage{right}{firma_martin_ajustada.jpg}
+
+\hfill{Ing. Martin Gustavo Casatti}
 
 \end{document}
