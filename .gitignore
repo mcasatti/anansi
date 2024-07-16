@@ -5,6 +5,10 @@ software/tools/topcat/stilts
 software/tools/topcat/stilts.jar
 software/database/ongdb/
 software/database/orientdb/
+software/tools/AstroImageJ
+
+# Otras carpetas que no se mantendrán versionadas
+temp
 
 # Created by https://www.toptal.com/developers/gitignore/api/latex
 # Edit at https://www.toptal.com/developers/gitignore?templates=latex
@@ -487,3 +491,20 @@ cython_debug/
 #.idea/
 
 # End of https://www.toptal.com/developers/gitignore/api/python
+documentacion/creditos/ejemplo/Aval e informe Director_Moreno.pdf
+documentacion/creditos/ejemplo/Documentación-probatoria-reconocimiento-créditos.pdf
+documentacion/creditos/ejemplo/Nota_Solicitud_Creditos_MORENO_GRACIELA.pdf
+documentacion/creditos/ejemplo/Planilla resumen Créditos 2023.xlsx
+documentacion/creditos/ejemplo/b/b.1-Certificado Supply Chain GMoreno.pdf
+documentacion/creditos/ejemplo/c3/c.3.1-6ta_Jornadaspaper_3506.pdf
+documentacion/creditos/ejemplo/c4/c.4.1-Certificado A y T N° 580.pdf
+documentacion/creditos/ejemplo/c4/c.4.1-TrabajoFinal-Moreno-601.pdf
+documentacion/creditos/ejemplo/c4/c.4.2-CAIS-09.pdf
+documentacion/creditos/ejemplo/c4/c.4.3-C_2023_SIIIO.pdf
+documentacion/creditos/ejemplo/c4/c.4.3-CertificadoMoreno_JAIIO.pdf
+documentacion/creditos/ejemplo/e/e.1.a-CSU-338-2022Proyectos de Extensión UNS.pdf
+documentacion/creditos/ejemplo/e/e.1.b-PEU 2022 InclusiondigitalAM.pdf
+documentacion/creditos/ejemplo/e/e.2-altaEnTramiteMasterReport.pdf
+documentacion/creditos/ejemplo/e/e.2-altatramite3.pdf
+documentacion/creditos/ejemplo/e/e.3-ProyectoPIP.pdf
+documentacion/creditos/creditos.zip
